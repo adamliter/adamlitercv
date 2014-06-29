@@ -15,6 +15,9 @@
 *.out
 *.toc
 *.pdf
+## Intermediate documents:
+*.dvi
+*.ps
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
 *.bcf
