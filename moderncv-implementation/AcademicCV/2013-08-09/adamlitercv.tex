@@ -1,0 +1,444 @@
+% -----------------------------------------------------------------------------------------------------------
+% NOTE TO SELF:
+% AFTER GLEEFUL/MSULC 2014
+% CHANGE GEOMETRY SCALE OPTION BACK TO .75
+% .78 WAS NEEDED IN ORDER TO ACCOMMODATE THE (IN PREP:) DATE
+% -----------------------------------------------------------------------------------------------------------
+
+
+\documentclass[11pt,a4paper,roman]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+
+% -----------------------------------------------------------------------------------------------------------
+% PREAMBLE TEMPLATE FOR MODERNCV
+% -----------------------------------------------------------------------------------------------------------
+
+	% -----------------------------------------------------------------------------------------------------------
+	% MODERNCV THEMES
+	% -----------------------------------------------------------------------------------------------------------
+		
+		\moderncvstyle{banking}                             % style options are 'casual' (default), 'classic', 'oldstyle' and 'banking'
+		\moderncvcolor{black}                               % color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+		%\renewcommand{\familydefault}{\sfdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
+		\nopagenumbers{}                                  % uncomment to suppress automatic page numbering for CVs longer than one page
+		
+	% -----------------------------------------------------------------------------------------------------------
+	% END THEMES
+	% -----------------------------------------------------------------------------------------------------------
+
+	% -----------------------------------------------------------------------------------------------------------
+	% CHARACTER ENCODING
+	% -----------------------------------------------------------------------------------------------------------
+		
+		%\usepackage[utf8]{inputenc}                       % if you are not using xelatex ou lualatex, replace by the encoding you are using
+		%\usepackage{CJKutf8}                              % if you need to use CJK to typeset your resume in Chinese, Japanese or Korean
+		
+	% -----------------------------------------------------------------------------------------------------------
+	% END CHARACTER ENCODING
+	% -----------------------------------------------------------------------------------------------------------
+
+	% -----------------------------------------------------------------------------------------------------------
+	% PAGE MARGINS
+	% -----------------------------------------------------------------------------------------------------------
+		
+		\usepackage[scale=0.78]{geometry}
+		%\setlength{\hintscolumnwidth}{3cm}                % if you want to change the width of the column with the dates
+		%\setlength{\makecvtitlenamewidth}{10cm}           % for the 'classic' style, if you want to force the width allocated to your name and avoid line breaks. be careful though, the length is normally calculated to avoid any overlap with your personal info; use this at your own typographical risks...
+		
+	% -----------------------------------------------------------------------------------------------------------
+	% END PAGE MARGINS
+	% -----------------------------------------------------------------------------------------------------------
+
+	% -----------------------------------------------------------------------------------------------------------
+	% PERSONAL INFORMATION
+	% -----------------------------------------------------------------------------------------------------------
+		
+		\name{Adam}{Liter}
+		%\title{Vita}                               		% optional, remove / comment the line if not wanted
+		\address{\textbf{School}: 121 Beal Street, East Lansing, MI 48823, USA}{\textbf{Permanent}: 18886 Magenta Bay, Eden Prairie, MN 55347, USA} % optional, remove / comment the line if not wanted; the "postcode city" and "country" arguments can be omitted or provided empty
+		\phone[mobile]{+1~(952)~807~5616}                   % optional, remove / comment the line if not wanted; the optional "type" of the phone can be "mobile" (default), "fixed" or "fax"
+		\email{literada@msu.edu}                            % optional, remove / comment the line if not wanted
+		\homepage{www.adamliter.org}                        % optional, remove / comment the line if not wanted
+		%\social[twitter]{@adam\_liter}                     % optional, remove / comment the line if not wanted
+		%\extrainfo{additional information}                 % optional, remove / comment the line if not wanted
+		%\photo[64pt][0.4pt]{adam_liter_bw.jpg}             % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file
+		%\quote{Some quote}                                 % optional, remove / comment the line if not wanted
+		
+	% -----------------------------------------------------------------------------------------------------------
+	% END PERSONAL INFORMATION
+	% -----------------------------------------------------------------------------------------------------------
+
+	% -----------------------------------------------------------------------------------------------------------
+	% BIBLIOGRAPHY INFORMATION
+	% -----------------------------------------------------------------------------------------------------------
+		
+		%\makeatletter
+		%\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
+		%\makeatother
+		%\renewcommand*{\bibliographyitemlabel}{[\arabic{enumiv}]}% CONSIDER REPLACING THE ABOVE BY THIS
+		
+		% bibliography with mutiple entries
+		\usepackage{multibib}
+		\newcites{ref,nonref,press,undergradpres,talks}{{Refereed Articles},{Non-Refereed Articles},{Conference Presentations},{Undergraduate Conference Presentations},{}}
+
+	% -----------------------------------------------------------------------------------------------------------
+	% END BIBLIOGRAPHY INFORMATION
+	% -----------------------------------------------------------------------------------------------------------
+
+% -----------------------------------------------------------------------------------------------------------
+% END PREAMBLE TEMPLATE FOR MODERNCV
+% -----------------------------------------------------------------------------------------------------------
+
+% -----------------------------------------------------------------------------------------------------------
+% PACKAGES LOADED FOR PERSONAL MODIFICATIONS, IN ADDITION TO WHAT THE FUNCTIONALITY OF MODERNCV PROVIDES
+% -----------------------------------------------------------------------------------------------------------
+
+% -----------------------------------------------------------------------------------------------------------
+% END PERSONAL PACKAGES
+% -----------------------------------------------------------------------------------------------------------
+
+% -----------------------------------------------------------------------------------------------------------
+% MY OWN MODIFICATIONS TO THE MODERNCV TEMPLATE
+% -----------------------------------------------------------------------------------------------------------
+	
+	% -----------------------------------------------------------------------------------------------------------
+	% NEW COMMAND FOR COLOR HYPERLINKS
+	% -----------------------------------------------------------------------------------------------------------
+	
+	\newcommand\Colorhref[3][blue]{\href{#2}{\color{#1}#3}}
+	
+	% -----------------------------------------------------------------------------------------------------------
+	% END COMMAND FOR COLOR HYPERLINKS
+	% -----------------------------------------------------------------------------------------------------------
+	
+	% -----------------------------------------------------------------------------------------------------------
+	% ELIMINATES LABEL IN SQUARE BRACKETS IN ALL BIBLIOGRAPHIES
+	% -----------------------------------------------------------------------------------------------------------
+	
+		\makeatletter
+		\def\@biblabel#1{}
+		\makeatother
+	
+	% -----------------------------------------------------------------------------------------------------------
+	% END SQUARE BRACKET ELIMINATION
+	% -----------------------------------------------------------------------------------------------------------
+	
+	% -----------------------------------------------------------------------------------------------------------
+	% SETS HANGING INDENTATION FOR \THEBIBLIOGRAPHY ENVIRONMENTS
+	% -----------------------------------------------------------------------------------------------------------
+	
+		% IMPORTANT NOTE: IN ORDER FOR THIS TO WORK, IT NEEDS TO COME AFTER \MODERNCVSTYLE DECLARATION
+				
+		\newlength{\bibhang}
+		\setlength{\bibhang}{2em}
+		
+		\usepackage{etoolbox}
+		\patchcmd{\thebibliography}{%
+		  \advance\leftmargin\labelsep
+		}{%
+		  \advance\leftmargin\labelsep
+		  \advance\leftmargin\bibhang
+		  \itemindent-\bibhang
+		}{}{}
+	
+	% -----------------------------------------------------------------------------------------------------------
+	% END HANGING INDENTATION
+	% -----------------------------------------------------------------------------------------------------------
+	
+% -----------------------------------------------------------------------------------------------------------
+% END MY OWN MODIFICATIONS 
+% -----------------------------------------------------------------------------------------------------------
+
+
+% -----------------------------------------------------------------------------------------------------------
+% BEGIN CONTENT
+% -----------------------------------------------------------------------------------------------------------
+
+\begin{document}
+	
+	% -----------------------------------------------------------------------------------------------------------
+	% ADDS FOOTER INFORMATION
+	% -----------------------------------------------------------------------------------------------------------
+	
+		\lfoot{\color{color2}\addressfont\itshape\strut Last Updated: \today \hfill \thepage}
+	
+	% -----------------------------------------------------------------------------------------------------------
+	% END FOOTER
+	% -----------------------------------------------------------------------------------------------------------
+
+	% -----------------------------------------------------------------------------------------------------------
+	% CV TITLE
+	% -----------------------------------------------------------------------------------------------------------
+
+		\makecvtitle
+
+	% -----------------------------------------------------------------------------------------------------------
+	% END CV TITLE
+	% -----------------------------------------------------------------------------------------------------------
+
+	% -----------------------------------------------------------------------------------------------------------
+	% EDUCATION SECTION
+	% -----------------------------------------------------------------------------------------------------------
+
+		\section{Education}
+		\cventry{}{Michigan State University}{M.A., Linguistics}{01/2013 -- (expected:) 05/2015}{\textit{East Lansing, MI}}{\footnotesize{Cumulative GPA: 4.0}}
+		\cventry{}{Michigan State University}{B.A., Linguistics (Honors) \& B.A., Philosophy (Honors)}{08/2010 -- (expected:) 05/2014}{\textit{East Lansing, MI}}{\footnotesize{%
+			\begin{itemize}%
+				\item{Cognitive Science Specialization}%
+				\item{Women's and Gender Studies Minor}%
+				%\item{Mathematics Minor}%
+				%\item{German Minor}%
+			\end{itemize}%
+			Dean's List (Fall 2010 -- Present); Cumulative GPA: 4.0}}
+		\cventry{}{University of Minnesota -- Twin Cities}{Non-Degree Seeking Student}{09/2007 -- 05/2010}{\textit{Minneapolis, MN}}{\footnotesize{%
+			\begin{itemize}%
+				\item{Post-Secondary Enrollment Options ('09 -- '10)}%
+				\item{University of Minnesota Talented Youth Mathematics Program ('07 -- '09)}%
+			\end{itemize}%
+			Cumulative GPA: 3.911}}
+		\cventry{}{Eden Prairie High School}{High School Diploma}{09/2006 -- 06/2010}{\textit{Eden Prairie, MN}}{\footnotesize{Cumulative GPA: 3.99}}
+		
+	% -----------------------------------------------------------------------------------------------------------
+	% END EDUCATION SECTION
+	% -----------------------------------------------------------------------------------------------------------
+	
+	% -----------------------------------------------------------------------------------------------------------
+	% THESES SECTION
+	% -----------------------------------------------------------------------------------------------------------
+	
+		%\section{Theses}
+		%\cvitem{M.A., Linguistics, Thesis}{\emph{Title} [\href{http://www.msu.edu/~literada}{PDF}]}
+		%\cvitem{Committee}{Supervisors}
+		%\cvitem{Abstract}{Short thesis abstract}
+		%\cvitem{B.A., Linguistics, Thesis}{\emph{Title} [\href{http://www.msu.edu/~literada}{PDF}]}
+		%\cvitem{Supervisors}{Alan Munn}
+		%\cvitem{Abstract}{Short thesis abstract}
+		%\cvitem{B.A., Philosophy, Thesis}{\emph{Title} [\href{http://www.msu.edu/~literada}{PDF}]}
+		%\cvitem{Supervisors}{Kristie Dotson}
+		%\cvitem{Abstract}{Short thesis abstract}
+		
+	% -----------------------------------------------------------------------------------------------------------
+	% END THESES SECTION
+	% -----------------------------------------------------------------------------------------------------------
+	
+	% -----------------------------------------------------------------------------------------------------------
+	% HONORS AND AWARDS SECTION
+	% -----------------------------------------------------------------------------------------------------------
+	
+		\section{Honors \& Awards}
+		
+			% -----------------------------------------------------------------------------------------------------------
+			% FUNDED AWARDS SUBSECTION
+			% -----------------------------------------------------------------------------------------------------------
+		
+				\subsection{Funded Awards}
+				\cventry{}{Linguistic Society of America}{2013 Linguistic Institute Fellowship}{06/2013 -- 07/2013}{\textit{University of Michigan, Ann Arbor, MI}}{}
+				\cventry{}{College of Arts and Letters}{Undergraduate Research Initiative -- Grantee}{10/2012 -- present}{\textit{Michigan State University, East Lansing, MI}}{}
+				\cventry{}{Honors College}{University Distinguished Scholarship}{08/2010 -- present}{\textit{Michigan State University, East Lansing, MI}}{}
+				\cventry{}{Michigan State University}{National Merit Scholar}{08/2010 -- present}{\textit{East Lansing, MI}}{}
+				\cventry{}{Honors College}{Professorial Assistantship}{08/2010 -- 05/2012}{\textit{Michigan State University, East Lansing, MI}}{}
+				
+			% -----------------------------------------------------------------------------------------------------------
+			% END FUNDED AWARDS SUBSECTION
+			% -----------------------------------------------------------------------------------------------------------
+			
+			% -----------------------------------------------------------------------------------------------------------
+			% UNDERGRADUATE CONFERENCE PRESENTATION AWARDS SUBSECTION
+			% -----------------------------------------------------------------------------------------------------------
+		
+				\subsection{Undergraduate Conference Presentation Awards}
+				\cventry{}{UURAF}{Category Winner (with C. Heffner)}{04/2012}{\textit{Michigan State University, East Lansing, MI}}{}
+				\cventry{}{MSULC}{Award Winner, Poster Presentation (with C. Heffner)}{04/2012}{\textit{Michigan State University, East Lansing, MI}}{}
+				
+			% -----------------------------------------------------------------------------------------------------------
+			% END UNDERGRADUATE CONFERENCE PRESENTATION AWARDS SUBSECTION
+			% -----------------------------------------------------------------------------------------------------------
+		
+	% -----------------------------------------------------------------------------------------------------------
+	% END HONORS AND AWARDS SECTION
+	% -----------------------------------------------------------------------------------------------------------
+	
+	% -----------------------------------------------------------------------------------------------------------
+	% RESEARCH EXPERIENCE SECTION
+	% -----------------------------------------------------------------------------------------------------------
+	
+		\section{Research Experience}
+		\cventry{}{\Colorhref{http://msuacquisition.wordpress.com/}{MSU Language Acquisition Lab}}{Lab Assistant for Cristina Schmitt, Ph.D.}{06/2012 -- present}{\textit{Michigan State University, East Lansing, MI}}{\footnotesize{I now manage the artificial language experiment investigating the acquisition of a unique nominal number system.}}
+		\cventry{}{\Colorhref{http://msuacquisition.wordpress.com/}{MSU Language Acquisition Lab}}{Professorial Assistant for Cristina Schmitt, Ph.D.}{08/2010 -- 06/2012}{\textit{Michigan State University, East Lansing, MI}}{\footnotesize{I am involved in an artificial language experiment investigating the acquisition of a unique nominal number system.}}
+		
+	% -----------------------------------------------------------------------------------------------------------
+	% END RESEARCH EXPERIENCE SECTION
+	% -----------------------------------------------------------------------------------------------------------
+
+	% -----------------------------------------------------------------------------------------------------------
+	% PUBLICATIONS SECTION
+	% -----------------------------------------------------------------------------------------------------------	
+
+		\section{Publications}
+		
+		% -----------------------------------------------------------------------------------------------------------
+		% REFEREED PUBLICATIONS SECTION
+		% -----------------------------------------------------------------------------------------------------------
+		
+			%\renewcommand{\refname}{Refereed Articles}
+			%\nociteref{*}
+			%\bibliographystyleref{apalike2-cv}
+			%\bibliographyref{cv-pubs-ref}
+		
+		% -----------------------------------------------------------------------------------------------------------
+		% END REFEREED PUBLICATIONS SECTION
+		% -----------------------------------------------------------------------------------------------------------
+		
+		% -----------------------------------------------------------------------------------------------------------
+		% NON-REFEREED PUBLICATIONS SECTION
+		% -----------------------------------------------------------------------------------------------------------
+		
+			\nocitenonref{*}
+			\bibliographystylenonref{apalike2-cv}
+			\bibliographynonref{cv-pubs-nonref}
+		
+		% -----------------------------------------------------------------------------------------------------------
+		% END NON-REFEREED PUBLICATIONS SECTION
+		% -----------------------------------------------------------------------------------------------------------
+		
+	% -----------------------------------------------------------------------------------------------------------
+	% END PUBLICATIONS SECTION
+	% -----------------------------------------------------------------------------------------------------------
+	
+	% -----------------------------------------------------------------------------------------------------------
+	% INVITED TALKS SECTION
+	% -----------------------------------------------------------------------------------------------------------
+	
+		%\section{Invited Talks}
+		
+			% -----------------------------------------------------------------------------------------------------------
+			% MODIFIES \BIBLIOGRAPHYHEAD TO PREVENT 'INVITED TALKS' APPEARING TWICE
+			% -----------------------------------------------------------------------------------------------------------
+
+				%\renewcommand*{\bibliographyhead}[1]{}
+			
+			% -----------------------------------------------------------------------------------------------------------
+			% END \BIBLIOGRAPHYHEAD MODIFICATION
+			% -----------------------------------------------------------------------------------------------------------
+			
+		%\nocitetalks{*}
+		%\bibliographystyletalks{apalike2-cv}
+		%\bibliographytalks{cv-talks}
+		
+			% -----------------------------------------------------------------------------------------------------------
+			% RESETS DEFINITION OF \BIBLIOGRAPHYHEAD 
+			% -----------------------------------------------------------------------------------------------------------
+
+				%\renewcommand*{\bibliographyhead}[1]{\subsection{#1}}
+			
+			% -----------------------------------------------------------------------------------------------------------
+			% END \BIBLIOGRAPHYHEAD RESET
+			% -----------------------------------------------------------------------------------------------------------
+		
+	% -----------------------------------------------------------------------------------------------------------
+	% END INVITED TALKS SECTION
+	% -----------------------------------------------------------------------------------------------------------
+	
+	% -----------------------------------------------------------------------------------------------------------
+	% PRESENTATIONS SECTION
+	% -----------------------------------------------------------------------------------------------------------
+	
+		\section{Presentations}
+	
+		% -----------------------------------------------------------------------------------------------------------
+		% UNDERGRADUATE CONFERENCE PRESENTATION SECTION
+		% -----------------------------------------------------------------------------------------------------------
+		
+			%\nocitepres{*}
+			%\bibliographystylepres{apalike2-cv}
+			%\bibliographypres{cv-pres}
+		
+		% -----------------------------------------------------------------------------------------------------------
+		% END UNDERGRADUATE CONFERENCE PRESENTATION SECTION
+		% -----------------------------------------------------------------------------------------------------------
+	
+		% -----------------------------------------------------------------------------------------------------------
+		% UNDERGRADUATE CONFERENCE PRESENTATION SECTION
+		% -----------------------------------------------------------------------------------------------------------
+		
+			\nociteundergradpres{*}
+			\bibliographystyleundergradpres{apalike2-cv}
+			\bibliographyundergradpres{cv-undergrad-pres}
+		
+		% -----------------------------------------------------------------------------------------------------------
+		% END UNDERGRADUATE CONFERENCE PRESENTATION SECTION
+		% -----------------------------------------------------------------------------------------------------------
+
+	% -----------------------------------------------------------------------------------------------------------
+	% END PRESENTATIONS SECTION
+	% -----------------------------------------------------------------------------------------------------------
+
+	% -----------------------------------------------------------------------------------------------------------
+	% PROFESSIONAL SERVICE SECTION
+	% -----------------------------------------------------------------------------------------------------------
+	
+		\section{Professional Service}
+		\cventry{}{\Colorhref{http://stance.iweb.bsu.edu/}{Stance}}{Assistant Editorial Board Member}{2012 -- 2013}{\textit{Ball State University, Munice, IN}}{\footnotesize{I served as an external reviewer for this professional, annual undergraduate philosophy journal.}}
+		\cventry{}{\Colorhref{https://www.msu.edu/~qualms}{qUALMS}}{President}{08/2012 -- present}{\textit{Michigan State University, East Lansing, MI}}{\footnotesize{I run the ``q Undergraduate Association for Linguistics at Michigan State'', which consists of preparing programming for throughout the year, arranging speakers and activities for the club, and advertising for linguistics on campus.}}
+		\cventry{}{\Colorhref{https://www.msu.edu/~qualms/gleeful.html}{GLEEFUL}}{Chair ('13 \& '14), Vice Chair ('11 \& '12)}{04/2011, 04/2012, 04/2013, (in prep:) 04/2014}{\textit{Michigan State University, East Lansing, MI}}{\footnotesize{In '13 \& '14, I (will) organize(d) the Great Lakes Expo for Experimental and Formal Undergraduate Linguistics, an international undergraduate linguistics conference. I will manage advertising, volunteers, fundraising, review of abstracts, the arrangement of the program, the arrangement of homestays and transportation, and the keynote speaker. In '11 \& '12, I aided Chris Heffner in running the conference.}}
+		\cventry{}{\Colorhref{https://www.msu.edu/~qualms/msulc.html}{MSULC}}{Vice Chair ('13 \& '14), Chair ('11 \& '12)}{04/2011, 04/2012, 04/2013, (in prep:) 04/2014}{\textit{Michigan State University, East Lansing, MI}}{\footnotesize{In '11 \& '12, I advertised for the Michigan State Undergraduate Linguistics Conference, a conference for MSU linguistics students only. I raised funds, collected abstracts, booked rooms, and ran the conference. In '13 \& '14, I (will) aid(ed) Haley Rooney in organizing the conference.}}
+		
+	% -----------------------------------------------------------------------------------------------------------
+	% END PROFESSIONAL SERVICE SECTION
+	% -----------------------------------------------------------------------------------------------------------
+
+	% -----------------------------------------------------------------------------------------------------------
+	% PROFESSIONAL AFFILIATIONS SECTION
+	% -----------------------------------------------------------------------------------------------------------
+	
+		\section{Professional Affiliations}
+		\cventry{}{Linguistic Society of America}{Member}{2012 -- present}{}{}
+		
+	% -----------------------------------------------------------------------------------------------------------
+	% END PROFESSIONAL AFFILIATIONS SECTION
+	% -----------------------------------------------------------------------------------------------------------
+	
+	% -----------------------------------------------------------------------------------------------------------
+	% SKILLS SECTION
+	% -----------------------------------------------------------------------------------------------------------
+	
+	\section{Skills}
+	
+		% -----------------------------------------------------------------------------------------------------------
+		% LANGUAGES SUBSECTION
+		% -----------------------------------------------------------------------------------------------------------
+	
+			\subsection{Languages}
+			\cvlistitem{English (specifically, \Colorhref{http://en.wikipedia.org/wiki/North_Central_American_English}{North-Central American English}) -- native}
+			\cvlistitem{German -- moderate intermediate proficiency}
+			\cvlistitem{French -- moderate intermediate proficiency}
+			\cvlistitem{(Brazilian) Portuguese -- moderate intermediate proficiency}
+			\cvlistitem{Spanish -- low intermediate proficiency}
+			\cvlistitem{Mandarin Chinese -- one year college instruction}
+			
+		% -----------------------------------------------------------------------------------------------------------
+		% END LANGUAGES SUBSECTION
+		% -----------------------------------------------------------------------------------------------------------
+		
+		% -----------------------------------------------------------------------------------------------------------
+		% COMPUTING SUBSECTION
+		% -----------------------------------------------------------------------------------------------------------
+			
+			\subsection{Computing}
+			\cvlistitem{Excel -- advanced}
+			\cvlistitem{\LaTeX \ -- intermediate}
+			\cvlistitem{HTML -- intermediate}
+			\cvlistitem{CSS -- low intermediate}
+			\cvlistitem{E-Prime -- low intermediate}
+			
+		% -----------------------------------------------------------------------------------------------------------
+		% END COMPUTING SUBSECTION
+		% -----------------------------------------------------------------------------------------------------------
+	
+	% -----------------------------------------------------------------------------------------------------------
+	% END SKILLS SECTION
+	% -----------------------------------------------------------------------------------------------------------
+	
+% -----------------------------------------------------------------------------------------------------------
+% END CONTENT
+% -----------------------------------------------------------------------------------------------------------
+\end{document}
