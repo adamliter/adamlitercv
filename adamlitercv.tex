@@ -1,0 +1,333 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX TS-program = arara
+% arara: xelatex
+% arara: bibtex
+% arara: xelatex
+% arara: xelatex
+
+\documentclass{article}
+
+% ------------------------------------------------------------------------------------------------
+% FONTS
+% ------------------------------------------------------------------------------------------------
+\usepackage{fontspec}
+\setmainfont{CMU Serif Roman}
+\newfontfamily\NameFont{Italianno}
+\usepackage{fontawesome}
+
+% ------------------------------------------------------------------------------------------------
+% DOCUMENT STUFF
+% ------------------------------------------------------------------------------------------------
+\setlength{\parindent}{0em}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\newcommand*{\Colorhref}[2]{\href{#1}{\color{cyan}#2}}
+
+% ------------------------------------------------------------------------------------------------
+% HEADER AND FOOTER
+% ------------------------------------------------------------------------------------------------
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{Last updated: \today}
+\cfoot{}
+\rfoot{\thepage/\pageref{LastPage}}
+\pagestyle{fancy}
+
+% ------------------------------------------------------------------------------------------------
+% CONTENT
+% ------------------------------------------------------------------------------------------------
+% needed pacakges
+\usepackage{datatool}
+\usepackage{etoolbox}
+\usepackage{pgffor}
+	% ------------------------------------------------------------------------------------------------
+	% PERSYNAL INFO
+	% ------------------------------------------------------------------------------------------------
+	\DTLloaddb{personal}{content/personal.csv}
+	% Get values for persynal info section of CV
+	\DTLgetvalue{\Address}{personal}{1}{\dtlcolumnindex{personal}{Address}}
+	\DTLgetvalue{\Phone}{personal}{1}{\dtlcolumnindex{personal}{Phone}}
+	\DTLgetvalue{\Email}{personal}{1}{\dtlcolumnindex{personal}{Email}}
+	\DTLgetvalue{\Website}{personal}{1}{\dtlcolumnindex{personal}{Website}}
+	\DTLgetvalue{\WebsiteURL}{personal}{1}{\dtlcolumnindex{personal}{WebsiteURL}}
+	% ------------------------------------------------------------------------------------------------
+	% EDUCATION
+	% ------------------------------------------------------------------------------------------------
+	\DTLloaddb{education}{content/education.csv}
+	% ------------------------------------------------------------------------------------------------
+	% AWARDS, HONORS, & FELLOWSHIPS
+	% ------------------------------------------------------------------------------------------------
+	\DTLloaddb{awards}{content/awards.csv}
+	% Get each award type for subsection
+	\newcommand*{\AwardTypes}{}
+	\DTLforeach*{awards}{\Type=Type}{%
+		\expandafter\DTLifinlist\expandafter{\Type}{\AwardTypes}%
+		 {} % do nothing if already in list
+		 {% else add to list
+		 	\ifdefempty{\AwardTypes}%
+			{\let\AwardTypes\Type}% first element of list
+			{% else append to list
+				\eappto\AwardTypes{,\Type}%
+			}%
+		}%
+	}
+	% ------------------------------------------------------------------------------------------------
+	% TEACHING
+	% ------------------------------------------------------------------------------------------------
+	\DTLloaddb{teaching}{content/teaching.csv}
+	% Get each type of teaching
+	\newcommand*{\TeachingTypes}{}
+	\DTLforeach*{teaching}{\Type=Type}{%
+		\expandafter\DTLifinlist\expandafter{\Type}{\TeachingTypes}%
+		{} % do nothing if already in list
+		{% else add to list
+			\ifdefempty{\TeachingTypes}%
+			{\let\TeachingTypes\Type}% first element of list
+			{% else append to list
+				\eappto\TeachingTypes{,\Type}
+			}%
+		}%
+	}
+	% ------------------------------------------------------------------------------------------------
+	% MENTORING
+	% ------------------------------------------------------------------------------------------------	
+	\DTLloaddb{mentoring}{content/mentoring.csv}
+	% Get each academic year of undergraduate mentoring
+	\newcommand*{\YearsOfMentoring}{}
+	\DTLforeach*{mentoring}{\AcademicYear=AcademicYear}{%
+		\expandafter\DTLifinlist\expandafter{\AcademicYear}{\YearsOfMentoring}%
+		{} % do nothing if already in list
+		{% else add to list
+			\ifdefempty{\YearsOfMentoring}%
+			{\let\YearsOfMentoring\AcademicYear}% first element of list
+			{% else append to list
+				\eappto\YearsOfMentoring{,\AcademicYear}%
+			}%
+		}%
+	}
+	% ------------------------------------------------------------------------------------------------
+	% PROFESSIONAL SERVICE
+	% ------------------------------------------------------------------------------------------------				 
+	\DTLloaddb{service}{content/service.csv}
+	% ------------------------------------------------------------------------------------------------
+	% PROFESSIONAL AFFILIATIONS
+	% ------------------------------------------------------------------------------------------------		
+	\DTLloaddb{affiliations}{content/affiliations.csv}
+	% ------------------------------------------------------------------------------------------------
+	% SKILLS
+	% ------------------------------------------------------------------------------------------------	
+	\DTLloaddb{skills}{content/skills.csv}
+	% Get each type of skill
+	\newcommand{\SkillTypes}{}
+	\DTLforeach*{skills}{\Type=Type}{%
+		\expandafter\DTLifinlist\expandafter{\Type}{\SkillTypes}%
+		{} % do nothing if already in list
+		{% else add to list
+			\ifdefempty{\SkillTypes}%
+				{\let\SkillTypes\Type}% first element in list
+				{% else append to list
+					\eappto\SkillTypes{,\Type}
+				}
+		}%
+	}
+\begin{document}
+
+% ------------------------------------------------------------------------------------------------
+% PERSYNAL INFO
+% ------------------------------------------------------------------------------------------------
+\begin{center}
+{\Huge\NameFont Adam Liter}
+\end{center}
+\Address \hfill \faPhone\,\Phone \hfill \faEnvelope\,\href{mailto:\Email}{\Email} \hfill \faHome\,\href{\WebsiteURL}{\Website}\par
+{\centering\hrulefill}
+
+% ------------------------------------------------------------------------------------------------
+% EDUCATION
+% ------------------------------------------------------------------------------------------------
+\section*{Education}
+
+\DTLforeach*{education}{%
+	\Degree=Degree,
+	\Institution=Institution,
+	\Location=Location,
+	\Thesis=Thesis,
+	\Committee=Committee,
+	\GPA=GPA,
+	\StartDate=StartDate,
+	\EndDate=EndDate,
+	\ExtraOne=Extra1,
+	\ExtraTwo=Extra2%
+	}{%
+		\textbf{\Degree} \hfill \DTLifnullorempty{\StartDate}{\EndDate}{\StartDate\ -- \EndDate}\par
+		\textit{\Institution}, \textit{\Location}\par
+		\DTLifnullorempty{\Thesis}{%
+			% Do nothing if \Thesis is empty
+		}{%
+			\begin{description}[
+			labelindent=15pt,
+			topsep=0pt,
+			partopsep=0pt,
+			parsep=0pt,
+			itemsep=0pt		
+			]
+				\item[Thesis:]{\Thesis}
+				\item[Advised by:]{\Committee}
+			\end{description}
+		%
+		}
+		\DTLifnullorempty{\ExtraOne}{%
+			% Do nothing if \ExtraOne is empty
+		}{%
+			\begin{itemize}[
+			topsep=0pt,
+			partopsep=0pt,
+			parsep=0pt,
+			itemsep=0pt
+			]
+				\item{\ExtraOne}
+				\DTLifnullorempty{\ExtraTwo}{}{\item{\ExtraTwo}}
+			\end{itemize}
+			%		
+		}
+		\DTLifnullorempty{\GPA}{}{Cumulative GPA: \GPA}\par
+	%
+}
+
+% ------------------------------------------------------------------------------------------------
+% AWARDS, HONORS, & FELLOWSHIPS
+% ------------------------------------------------------------------------------------------------
+\section*{Awards, Honors, \& Fellowships}
+
+\foreach \x in \AwardTypes{%
+	\subsection*{\x}
+	\DTLforeach*[\DTLiseq{\Type}{\x}]{awards}{%
+		\Type=Type,
+		\Name=Name,
+		\Granter=Granter,
+		\AwardLocation=Location,
+		\AwardStartDate=StartDate,
+		\AwardEndDate=EndDate%
+		}{%
+			\textbf{\Name} \hfill \DTLifnullorempty{\AwardStartDate}{\AwardEndDate}{\AwardStartDate\ -- \AwardEndDate}\par
+			\textit{\Granter}, \textit{\AwardLocation}\par
+		%
+	}%
+}	
+
+% ------------------------------------------------------------------------------------------------
+% PUBLICATIONS
+% ------------------------------------------------------------------------------------------------
+\section*{Publications}
+
+% ------------------------------------------------------------------------------------------------
+% PRESENTATIONS
+% ------------------------------------------------------------------------------------------------
+\section*{Presentations}
+
+% ------------------------------------------------------------------------------------------------
+% TEACHING
+% ------------------------------------------------------------------------------------------------
+\section*{Teaching Experience}
+
+\foreach \x in \TeachingTypes{%
+	\subsection*{\x}
+	\DTLforeach*[\DTLiseq{\Type}{\x}]{teaching}{%
+		\Type=Type,
+		\Class=Class,
+		\University=University,
+		\Date=Date%
+		}{%
+			\textbf{\Class} \hfill \Date\par
+			\textit{\University}\par
+		%
+	}%
+}
+
+% ------------------------------------------------------------------------------------------------
+% MENTORING
+% ------------------------------------------------------------------------------------------------
+\section*{Undergraduate Mentoring}
+
+\foreach \x in \YearsOfMentoring{%
+	\subsection*{\x}
+	\DTLforeach*[\DTLiseq{\AcademicYear}{\x}]{mentoring}{%
+		\Mentees=Mentees,
+		\Project=Project,
+		\Presented=Presented,
+		\AcademicYear=AcademicYear%
+		}{%
+			\Mentees
+			\begin{itemize}[
+			topsep=0pt,
+			partopsep=0pt,
+			parsep=0pt,
+			itemsep=0pt
+			]
+				\item{\textit{\Project}}
+				\item{\Presented}
+			\end{itemize}
+		%
+	}%
+}
+
+% ------------------------------------------------------------------------------------------------
+% PROFESSIONAL SERVICE
+% ------------------------------------------------------------------------------------------------
+\section*{Professional Service}
+
+\DTLforeach*{service}{%
+	\Role=Role,
+	\Organization=Organization,
+	\URL=URL,
+	\Location=Location,
+	\StartDate=StartDate,
+	\EndDate=EndDate%
+	}{%
+		\textbf{\Role} \hfill \DTLifnullorempty{\StartDate}{\EndDate}{\StartDate\ -- \EndDate}\par
+		\DTLifnullorempty{\URL}{\textit{\Organization}}{\textit{\Colorhref{\URL}{\Organization}}}, \textit{\Location}\par
+	%
+}
+
+% ------------------------------------------------------------------------------------------------
+% PROFESSIONAL AFFILIATIONS
+% ------------------------------------------------------------------------------------------------
+\section*{Professional Affiliations}
+
+\DTLforeach*{affiliations}{%
+	\Title=Title,
+	\Organization=Organization,
+	\StartDate=StartDate,
+	\EndDate=EndDate%
+	}{%
+		\textbf{\Title} \hfill \DTLifnullorempty{\StartDate}{\EndDate}{\StartDate\ -- \EndDate}\par
+		\textit{\Organization}\par
+	%
+}
+
+% ------------------------------------------------------------------------------------------------
+% SKILLS
+% ------------------------------------------------------------------------------------------------
+\section*{Skills}
+
+\foreach \x in \SkillTypes{%
+	\subsection*{\x}
+	\DTLforeach*[\DTLiseq{\Type}{\x}]{skills}{%
+	\Type=Type,
+	\SkillLevel=SkillLevel,
+	\Skill=Skill%
+	}{%
+		\begin{description}
+			\item[\SkillLevel]{\Skill}
+		\end{description}
+		%
+	}%
+}
+
+\end{document}
