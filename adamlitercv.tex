@@ -288,13 +288,21 @@ itemsep=0pt
 
 \foreach \x in \YearsOfMentoring{%
 	\subsection*{\x}
+	%
+	\begin{itemize}[
+	topsep=0pt,
+	partopsep=0pt,
+	parsep=0pt,
+	itemsep=0pt
+	]
+	%
 	\DTLforeach*[\DTLiseq{\AcademicYear}{\x}]{mentoring}{%
 		\Mentees=Mentees,
 		\Project=Project,
 		\Presented=Presented,
 		\AcademicYear=AcademicYear%
 		}{%
-			\Mentees
+			\item{\Mentees
 			\begin{itemize}[
 			topsep=0pt,
 			partopsep=0pt,
@@ -304,8 +312,10 @@ itemsep=0pt
 				\item{\textit{\Project}}
 				\item{\Presented}
 			\end{itemize}
+			}
 		%
 	}%
+	\end{itemize}
 }
 
 % ------------------------------------------------------------------------------------------------
