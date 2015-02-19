@@ -72,7 +72,7 @@
 	\newcommand*{\AwardTypes}{}
 	\DTLforeach*{awards}{\Type=Type}{%
 		\expandafter\DTLifinlist\expandafter{\Type}{\AwardTypes}%
-		 {} % do nothing if already in list
+		 {}% do nothing if already in list
 		 {% else add to list
 		 	\ifdefempty{\AwardTypes}%
 			{\let\AwardTypes\Type}% first element of list
@@ -80,7 +80,7 @@
 				\eappto\AwardTypes{,\Type}%
 			}%
 		}%
-	}
+	}%
 	% ------------------------------------------------------------------------------------------------
 	% PUBLICATIONS
 	% ------------------------------------------------------------------------------------------------
@@ -93,7 +93,7 @@
 	\newcommand*{\PresentationTypes}{}
 	\DTLforeach*{presentations}{\Type=Type}{%
 		\expandafter\DTLifinlist\expandafter{\Type}{\PresentationTypes}%
-		{} % do nothing if already in list
+		{}% do nothing if already in list
 		{% else add to list
 			\ifdefempty{\PresentationTypes}%
 			{\let\PresentationTypes\Type}% first element of list
@@ -101,7 +101,7 @@
 				\eappto\PresentationTypes{,\Type}%
 			}%
 		}%
-	}
+	}%
 	% Also a macro for looping through four authors
 	\newcommand*{\PresentationAuthorLoop}{%
         \DTLifnullorempty{\FourthAuthorFirst}{%
@@ -125,7 +125,7 @@
         	% If there is a fourth author
         	, \SecondAuthorFirst\DTLifnullorempty{\SecondAuthorMiddle}{\mbox{ }}{\mbox{ }\SecondAuthorMiddle\mbox{ }}\SecondAuthorLast, \ThirdAuthorFirst \DTLifnullorempty{\ThirdAuthorMiddle}{\mbox{ }}{\mbox{ }\ThirdAuthorMiddle\mbox{ }}\ThirdAuthorLast, \& \FourthAuthorFirst \DTLifnullorempty{\FourthAuthorMiddle}{\mbox{ }}{\mbox{ }\FourthAuthorMiddle\mbox{ }}\FourthAuthorLast.%
         }%
-	}
+	}%
 	% ------------------------------------------------------------------------------------------------
 	% TEACHING
 	% ------------------------------------------------------------------------------------------------
@@ -134,7 +134,7 @@
 	\newcommand*{\TeachingTypes}{}
 	\DTLforeach*{teaching}{\Type=Type}{%
 		\expandafter\DTLifinlist\expandafter{\Type}{\TeachingTypes}%
-		{} % do nothing if already in list
+		{}% do nothing if already in list
 		{% else add to list
 			\ifdefempty{\TeachingTypes}%
 			{\let\TeachingTypes\Type}% first element of list
@@ -142,7 +142,7 @@
 				\eappto\TeachingTypes{,\Type}
 			}%
 		}%
-	}
+	}%
 	% ------------------------------------------------------------------------------------------------
 	% MENTORING
 	% ------------------------------------------------------------------------------------------------	
@@ -151,7 +151,7 @@
 	\newcommand*{\YearsOfMentoring}{}
 	\DTLforeach*{mentoring}{\AcademicYear=AcademicYear}{%
 		\expandafter\DTLifinlist\expandafter{\AcademicYear}{\YearsOfMentoring}%
-		{} % do nothing if already in list
+		{}% do nothing if already in list
 		{% else add to list
 			\ifdefempty{\YearsOfMentoring}%
 			{\let\YearsOfMentoring\AcademicYear}% first element of list
@@ -159,10 +159,10 @@
 				\eappto\YearsOfMentoring{,\AcademicYear}%
 			}%
 		}%
-	}
+	}%
 	% ------------------------------------------------------------------------------------------------
 	% PROFESSIONAL SERVICE
-	% ------------------------------------------------------------------------------------------------				 
+	% ------------------------------------------------------------------------------------------------
 	\DTLloaddb{service}{content/service.csv}
 	% ------------------------------------------------------------------------------------------------
 	% PROFESSIONAL AFFILIATIONS
@@ -176,7 +176,7 @@
 	\newcommand{\SkillTypes}{}
 	\DTLforeach*{skills}{\Type=Type}{%
 		\expandafter\DTLifinlist\expandafter{\Type}{\SkillTypes}%
-		{} % do nothing if already in list
+		{}% do nothing if already in list
 		{% else add to list
 			\ifdefempty{\SkillTypes}%
 				{\let\SkillTypes\Type}% first element in list
@@ -184,15 +184,17 @@
 					\eappto\SkillTypes{,\Type}
 				}
 		}%
-	}
+	}%
+
 \begin{document}
 
 % ------------------------------------------------------------------------------------------------
 % PERSYNAL INFO
 % ------------------------------------------------------------------------------------------------
 \begin{center}
-{\Huge\NameFont Adam Liter}
+	{\Huge\NameFont Adam Liter}
 \end{center}
+%
 \Address \hfill \faPhone\,\Phone \hfill \faEnvelope\,\href{mailto:\Email}{\Email} \hfill \faHome\,\href{\WebsiteURL}{\Website}\par
 {\centering\hrulefill}
 
@@ -212,41 +214,42 @@
 	\EndDate=EndDate,
 	\ExtraOne=Extra1,
 	\ExtraTwo=Extra2%
-	}{%
-		\textbf{\Degree} \hfill \DTLifnullorempty{\StartDate}{\EndDate}{\StartDate\ -- \EndDate}\par
-		\textit{\Institution}, \textit{\Location}\par
-		\DTLifnullorempty{\Thesis}{%
-			% Do nothing if \Thesis is empty
-		}{%
-			\begin{description}[
-			labelindent=15pt,
-			topsep=0pt,
-			partopsep=0pt,
-			parsep=0pt,
-			itemsep=0pt		
-			]
-				\item[Thesis:]{\Thesis}
-				\item[Advised by:]{\Committee}
-			\end{description}
-		%
-		}
-		\DTLifnullorempty{\ExtraOne}{%
-			% Do nothing if \ExtraOne is empty
-		}{%
-			\begin{itemize}[
-			topsep=0pt,
-			partopsep=0pt,
-			parsep=0pt,
-			itemsep=0pt
-			]
-				\item{\ExtraOne}
-				\DTLifnullorempty{\ExtraTwo}{}{\item{\ExtraTwo}}
-			\end{itemize}
-			%		
-		}
-		\DTLifnullorempty{\GPA}{}{Cumulative GPA: \GPA}\par
+}{%
+	\textbf{\Degree} \hfill \DTLifnullorempty{\StartDate}{\EndDate}{\StartDate\ -- \EndDate}\par
+	\textit{\Institution}, \textit{\Location}\par
 	%
-}
+	\DTLifnullorempty{\Thesis}{%
+		% Do nothing if \Thesis is empty
+	}{% If \Thesis is not empty
+		\begin{description}[
+		labelindent=15pt,
+		topsep=0pt,
+		partopsep=0pt,
+		parsep=0pt,
+		itemsep=0pt		
+		]
+			\item[Thesis:]{\Thesis}
+			\item[Advised by:]{\Committee}
+		\end{description}
+		%
+	}%
+	\DTLifnullorempty{\ExtraOne}{%
+		% Do nothing if \ExtraOne is empty
+	}{% If \ExtraOne is not empty
+		\begin{itemize}[
+		topsep=0pt,
+		partopsep=0pt,
+		parsep=0pt,
+		itemsep=0pt
+		]
+			\item{\ExtraOne}
+			\DTLifnullorempty{\ExtraTwo}{}{\item{\ExtraTwo}}
+		\end{itemize}
+		%		
+	}%
+	\DTLifnullorempty{\GPA}{}{Cumulative GPA: \GPA}\par
+	%
+}%
 
 % ------------------------------------------------------------------------------------------------
 % COURSES
@@ -269,8 +272,8 @@ itemsep=0pt
 	\CourseName=CourseName,
 	%\SemesterTaken=SemesterTaken,
 	\TakenAt=TakenAt%
-	}{%
-		\item{\textsc{\Field} \CourseNumber\ -- \CourseName \hfill \textit{\TakenAt}}
+}{%
+	\item{\textsc{\Field} \CourseNumber\ -- \CourseName \hfill \textit{\TakenAt}}
 	%
 }
 
@@ -290,14 +293,14 @@ itemsep=0pt
 		\AwardLocation=Location,
 		\AwardStartDate=StartDate,
 		\AwardEndDate=EndDate%
-		}{%
-			\begin{minipage}{\textwidth}
-				\textbf{\Name} \hfill \DTLifnullorempty{\AwardStartDate}{\AwardEndDate}{\AwardStartDate\ -- \AwardEndDate}\par
-				\textit{\Granter}, \textit{\AwardLocation}
-			\end{minipage}
+	}{%
+		\begin{minipage}{\textwidth}
+			\textbf{\Name} \hfill \DTLifnullorempty{\AwardStartDate}{\AwardEndDate}{\AwardStartDate\ -- \AwardEndDate}\par
+			\textit{\Granter}, \textit{\AwardLocation}
+		\end{minipage}
 		%
 	}%
-}	
+}%	
 
 % ------------------------------------------------------------------------------------------------
 % PUBLICATIONS
@@ -331,16 +334,16 @@ itemsep=0pt
 		\PresentedAt=PresentedAt,
 		\Address=Address,
 		\BIB=BIB%
-		}{%
-			\begin{minipage}{\textwidth}
-				\frenchspacing
-				\hangindent=1em
-				\FirstAuthorLast, \FirstAuthorFirst\DTLifnullorempty{\FirstAuthorMiddle}{}{\mbox{ }\FirstAuthorMiddle}\PresentationAuthorLoop\mbox{ }(\Month, \Year).\mbox{ }\Title.\mbox{ }\PresentedAt, \Address.
-				\DTLiflastrow{}{\vspace{1ex}}
-			\end{minipage}
+	}{%
+		\begin{minipage}{\textwidth}
+			\frenchspacing
+			\hangindent=1em
+			\FirstAuthorLast, \FirstAuthorFirst\DTLifnullorempty{\FirstAuthorMiddle}{}{\mbox{ }\FirstAuthorMiddle}\PresentationAuthorLoop\mbox{ }(\Month, \Year).\mbox{ }\Title.\mbox{ }\PresentedAt, \Address.
+			\DTLiflastrow{}{\vspace{1ex}}
+		\end{minipage}
 		%
 	}%
-}
+}%
 
 % ------------------------------------------------------------------------------------------------
 % TEACHING
@@ -354,12 +357,12 @@ itemsep=0pt
 		\Class=Class,
 		\University=University,
 		\Date=Date%
-		}{%
-			\textbf{\Class} \hfill \Date\par
-			\textit{\University}\par
+	}{%
+		\textbf{\Class} \hfill \Date\par
+		\textit{\University}\par
 		%
 	}%
-}
+}%
 
 % ------------------------------------------------------------------------------------------------
 % MENTORING
@@ -381,8 +384,8 @@ itemsep=0pt
 		\Project=Project,
 		\Presented=Presented,
 		\AcademicYear=AcademicYear%
-		}{%
-			\item{\Mentees
+	}{%
+		\item{\Mentees
 			\begin{itemize}[
 			topsep=0pt,
 			partopsep=0pt,
@@ -392,11 +395,11 @@ itemsep=0pt
 				\item{\textit{\Project}}
 				\item{\Presented}
 			\end{itemize}
-			}
+		}%
 		%
 	}%
 	\end{itemize}
-}
+}%
 
 % ------------------------------------------------------------------------------------------------
 % PROFESSIONAL SERVICE
@@ -410,13 +413,13 @@ itemsep=0pt
 	\Location=Location,
 	\StartDate=StartDate,
 	\EndDate=EndDate%
-	}{%
-		\begin{minipage}{\textwidth}
-			\textbf{\Role} \hfill \DTLifnullorempty{\StartDate}{\EndDate}{\StartDate\ -- \EndDate}\par
-			\DTLifnullorempty{\URL}{\textit{\Organization}}{\textit{\Colorhref{\URL}{\Organization}}}, \textit{\Location}
-		\end{minipage}
+}{%
+	\begin{minipage}{\textwidth}
+		\textbf{\Role} \hfill \DTLifnullorempty{\StartDate}{\EndDate}{\StartDate\ -- \EndDate}\par
+		\DTLifnullorempty{\URL}{\textit{\Organization}}{\textit{\Colorhref{\URL}{\Organization}}}, \textit{\Location}
+	\end{minipage}
 	%
-}
+}%
 
 % ------------------------------------------------------------------------------------------------
 % PROFESSIONAL AFFILIATIONS
@@ -428,13 +431,13 @@ itemsep=0pt
 	\Organization=Organization,
 	\StartDate=StartDate,
 	\EndDate=EndDate%
-	}{%
-		\begin{minipage}{\textwidth}
-			\textbf{\Title} \hfill \DTLifnullorempty{\StartDate}{\EndDate}{\StartDate\ -- \EndDate}\par
-			\textit{\Organization}
-		\end{minipage}
+}{%
+	\begin{minipage}{\textwidth}
+		\textbf{\Title} \hfill \DTLifnullorempty{\StartDate}{\EndDate}{\StartDate\ -- \EndDate}\par
+		\textit{\Organization}
+	\end{minipage}
 	%
-}
+}%
 
 % ------------------------------------------------------------------------------------------------
 % SKILLS
@@ -450,11 +453,11 @@ itemsep=0pt
 		\Type=Type,
 		\SkillLevel=SkillLevel,
 		\Skill=Skill%
-		}{%
-			\item[\SkillLevel]{\Skill}
+	}{%
+		\item[\SkillLevel]{\Skill}
 		%
 	}%
 	\end{description}
-}
+}%
 
 \end{document}
