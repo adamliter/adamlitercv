@@ -215,6 +215,7 @@
 	\ExtraOne=Extra1,
 	\ExtraTwo=Extra2%
 }{%
+	\begin{minipage}{\textwidth}
 	\textbf{\Degree} \hfill \DTLifnullorempty{\StartDate}{\EndDate}{\StartDate\ -- \EndDate}\par
 	\textit{\Institution}, \textit{\Location}\par
 	%
@@ -247,7 +248,9 @@
 		\end{itemize}
 		%		
 	}%
-	\DTLifnullorempty{\GPA}{}{Cumulative GPA: \GPA}\par
+	\DTLifnullorempty{\GPA}{}{Cumulative GPA: \GPA}
+	\DTLiflastrow{}{\vspace{1ex}}
+	\end{minipage}
 	%
 }%
 
