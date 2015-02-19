@@ -300,6 +300,7 @@ itemsep=0pt
 		\begin{minipage}{\textwidth}
 			\textbf{\Name} \hfill \DTLifnullorempty{\AwardStartDate}{\AwardEndDate}{\AwardStartDate\ -- \AwardEndDate}\par
 			\textit{\Granter}, \textit{\AwardLocation}
+			\DTLiflastrow{}{\vspace{1ex}}
 		\end{minipage}
 		%
 	}%
@@ -362,7 +363,8 @@ itemsep=0pt
 		\Date=Date%
 	}{%
 		\textbf{\Class} \hfill \Date\par
-		\textit{\University}\par
+		\textit{\University}
+		\DTLiflastrow{}{\vspace{1ex}}
 		%
 	}%
 }%
@@ -420,6 +422,7 @@ itemsep=0pt
 	\begin{minipage}{\textwidth}
 		\textbf{\Role} \hfill \DTLifnullorempty{\StartDate}{\EndDate}{\StartDate\ -- \EndDate}\par
 		\DTLifnullorempty{\URL}{\textit{\Organization}}{\textit{\Colorhref{\URL}{\Organization}}}, \textit{\Location}
+		\DTLiflastrow{}{\vspace{1ex}}
 	\end{minipage}
 	%
 }%
@@ -438,6 +441,7 @@ itemsep=0pt
 	\begin{minipage}{\textwidth}
 		\textbf{\Title} \hfill \DTLifnullorempty{\StartDate}{\EndDate}{\StartDate\ -- \EndDate}\par
 		\textit{\Organization}
+		\DTLiflastrow{}{\vspace{1ex}}
 	\end{minipage}
 	%
 }%
