@@ -116,14 +116,14 @@
         		}{%
         			% If there is a second author
         			\mbox{ }\& \SecondAuthorFirst\DTLifnullorempty{\SecondAuthorMiddle}{\mbox{ }}{\mbox{ }\SecondAuthorMiddle\mbox{ }}\SecondAuthorLast.%	
-        		}
+        		}%
         	}{%
         		% If there is a third author
         		, \SecondAuthorFirst\DTLifnullorempty{\SecondAuthorMiddle}{\mbox{ }}{\mbox{ }\SecondAuthorMiddle\mbox{ }}\SecondAuthorLast, \& \ThirdAuthorFirst \DTLifnullorempty{\ThirdAuthorMiddle}{\mbox{ }}{\mbox{ }\ThirdAuthorMiddle\mbox{ }}\ThirdAuthorLast.%
-        	}
+        	}%
         }{%
         	% If there is a fourth author
-        	, \SecondAuthorFirst\DTLifnullorempty{\SecondAuthorMiddle}{\mbox{ }}{\mbox{ }\SecondAuthorMiddle\mbox{ }}\SecondAuthorLast, \ThirdAuthorFirst \DTLifnullorempty{\ThirdAuthorMiddle}{\mbox{ }}{\mbox{ }\ThirdAuthorMiddle\mbox{ }}\ThirdAuthorLast, \& \FourthAuthorFirst \DTLifnullorempty{\FourthAuthorMiddle}{\mbox{ }}{\mbox{ }\FourthAuthorMiddle\mbox{ }}\FourthAuthorLast.\mbox{ }%
+        	, \SecondAuthorFirst\DTLifnullorempty{\SecondAuthorMiddle}{\mbox{ }}{\mbox{ }\SecondAuthorMiddle\mbox{ }}\SecondAuthorLast, \ThirdAuthorFirst \DTLifnullorempty{\ThirdAuthorMiddle}{\mbox{ }}{\mbox{ }\ThirdAuthorMiddle\mbox{ }}\ThirdAuthorLast, \& \FourthAuthorFirst \DTLifnullorempty{\FourthAuthorMiddle}{\mbox{ }}{\mbox{ }\FourthAuthorMiddle\mbox{ }}\FourthAuthorLast.%
         }%
 	}
 	% ------------------------------------------------------------------------------------------------
@@ -335,7 +335,7 @@ itemsep=0pt
 			\begin{minipage}{\textwidth}
 				\frenchspacing
 				\hangindent=1em
-				\FirstAuthorLast, \FirstAuthorFirst\DTLifnullorempty{\FirstAuthorMiddle}{}{\mbox{ }\FirstAuthorMiddle}\PresentationAuthorLoop(\Month, \Year).\mbox{ }\Title.\mbox{ }\PresentedAt, \Address.
+				\FirstAuthorLast, \FirstAuthorFirst\DTLifnullorempty{\FirstAuthorMiddle}{}{\mbox{ }\FirstAuthorMiddle}\PresentationAuthorLoop\mbox{ }(\Month, \Year).\mbox{ }\Title.\mbox{ }\PresentedAt, \Address.
 				\DTLiflastrow{}{\vspace{1ex}}
 			\end{minipage}
 		%
