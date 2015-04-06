@@ -3,5 +3,5 @@ Languages,Native,"English (specifically, \Colorhref{http://en.wikipedia.org/wiki
 Languages,Intermediate,"German, French, Brazilian Portuguese"
 Languages,Beginner,"Spanish, Mandarin"
 Computing,Advanced,"\LaTeX, HTML, CSS"
-Computing,Intermediate,"\texttt{git}, E-Prime, PsychoPy"
-Computing,Beginner,"R, CLAN, Praat, CorpusSearch"
+Computing,Intermediate,"R, \texttt{git}, E-Prime, PsychoPy"
+Computing,Beginner,"CLAN, Praat, CorpusSearch"
