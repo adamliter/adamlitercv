@@ -1,6 +1,7 @@
 % !TEX encoding = UTF-8 Unicode
 % !TEX TS-program = arara
 % arara: xelatex
+% arara: biber
 % arara: xelatex
 
 \documentclass{article}
@@ -39,6 +40,56 @@
 \rfoot{\thepage/\pageref{LastPage}}
 \pagestyle{fancy}
 
+% ------------------------------------------------------------------------------------------------
+% FOR BIBLIOGRAPHIC STUFF
+% ------------------------------------------------------------------------------------------------
+\usepackage[american]{babel}
+\usepackage{csquotes}
+\usepackage[
+	bibstyle=biblatex-sp-unified,% see https://github.com/semprag/biblatex-sp-unified
+	sorting=ydmdDdt
+]{biblatex}
+\addbibresource{content/AdamLiterReferences.bib}
+	% ------------------------------------------------------------------------------------------------
+	% New sorting scheme for CV
+	% ------------------------------------------------------------------------------------------------
+	% Based on ynt sorting scheme of biblatex
+	% Except:
+	% 	(i) don't sort on n(ame)
+	% 	(ii) ignore presort
+	% 	(iii) and do the following:
+	% sort by year, desecnding (yd);
+	% then by month, desecnding (md);
+	% then by day, descending (Dd);
+	% then by title (t)
+	%
+	% See also http://tex.stackexchange.com/a/46879/32888
+	%
+	\DeclareSortingScheme{ydmdDdt}{
+		%\sort{
+		%	\field{presort}
+		%}
+		%\sort[final]{
+		%	\field{sortkey}
+		%}
+		\sort[direction=descending]{
+			\field{sortyear}
+			\field{year}
+			\literal{9999}
+		}
+		\sort[direction=descending]{
+			\field[padside=left,padwidth=2,padchar=0]{month}
+			\literal{00}
+		}
+		\sort[direction=descending]{
+			\field[padside=left,padwidth=2,padchar=0]{day}
+			\literal{00}
+		}
+		\sort{
+			\field{sorttitle}
+			\field{title}
+		}
+	}
 % ------------------------------------------------------------------------------------------------
 % CONTENT
 % ------------------------------------------------------------------------------------------------
@@ -84,48 +135,11 @@
 	% ------------------------------------------------------------------------------------------------
 	% PUBLICATIONS
 	% ------------------------------------------------------------------------------------------------
-	%\DTLloaddb{publications}{content/publications.csv}
+	%
 	% ------------------------------------------------------------------------------------------------
 	% PRESENTATIONS
 	% ------------------------------------------------------------------------------------------------
-	\DTLloaddb{presentations}{content/presentations.csv}
-	% Get each type of presentation
-	\newcommand*{\PresentationTypes}{}
-	\DTLforeach*{presentations}{\Type=Type}{%
-		\expandafter\DTLifinlist\expandafter{\Type}{\PresentationTypes}%
-		{}% do nothing if already in list
-		{% else add to list
-			\ifdefempty{\PresentationTypes}%
-			{\let\PresentationTypes\Type}% first element of list
-			{% else append to list
-				\eappto\PresentationTypes{,\Type}%
-			}%
-		}%
-	}%
-	% Also a macro for looping through four authors
-	\newcommand*{\PresentationAuthorLoop}{%
-        \DTLifnullorempty{\FourthAuthorFirst}{%
-        	% If there is NOT a fourth author
-        	% Then check if there is a third author
-        	\DTLifnullorempty{\ThirdAuthorFirst}{%
-        		% If there is NOT a third author
-        		% Then check if there is a second author
-        		\DTLifnullorempty{\SecondAuthorFirst}{%
-        			% If there is NOT a second author
-        			.%
-        		}{%
-        			% If there is a second author
-        			\mbox{ }\& \SecondAuthorFirst\DTLifnullorempty{\SecondAuthorMiddle}{\mbox{ }}{\mbox{ }\SecondAuthorMiddle\mbox{ }}\SecondAuthorLast.%	
-        		}%
-        	}{%
-        		% If there is a third author
-        		, \SecondAuthorFirst\DTLifnullorempty{\SecondAuthorMiddle}{\mbox{ }}{\mbox{ }\SecondAuthorMiddle\mbox{ }}\SecondAuthorLast, \& \ThirdAuthorFirst \DTLifnullorempty{\ThirdAuthorMiddle}{\mbox{ }}{\mbox{ }\ThirdAuthorMiddle\mbox{ }}\ThirdAuthorLast.%
-        	}%
-        }{%
-        	% If there is a fourth author
-        	, \SecondAuthorFirst\DTLifnullorempty{\SecondAuthorMiddle}{\mbox{ }}{\mbox{ }\SecondAuthorMiddle\mbox{ }}\SecondAuthorLast, \ThirdAuthorFirst \DTLifnullorempty{\ThirdAuthorMiddle}{\mbox{ }}{\mbox{ }\ThirdAuthorMiddle\mbox{ }}\ThirdAuthorLast, \& \FourthAuthorFirst \DTLifnullorempty{\FourthAuthorMiddle}{\mbox{ }}{\mbox{ }\FourthAuthorMiddle\mbox{ }}\FourthAuthorLast.%
-        }%
-	}%
+	%
 	% ------------------------------------------------------------------------------------------------
 	% TEACHING
 	% ------------------------------------------------------------------------------------------------
@@ -314,40 +328,11 @@
 % ------------------------------------------------------------------------------------------------
 % PRESENTATIONS
 % ------------------------------------------------------------------------------------------------
-\section*{Presentations}
 
-\foreach \x in \PresentationTypes{%
-	\subsection*{\x}
-	\DTLforeach*[\DTLiseq{\Type}{\x}]{presentations}{%
-		\Type=Type,
-		\FirstAuthorFirst=FirstAuthorFirst,
-		\FirstAuthorMiddle=FirstAuthorMiddle,
-		\FirstAuthorLast=FirstAuthorLast,
-		\SecondAuthorFirst=SecondAuthorFirst,
-		\SecondAuthorMiddle=SecondAuthorMiddle,
-		\SecondAuthorLast=SecondAuthorLast,
-		\ThirdAuthorFirst=ThirdAuthorFirst,
-		\ThirdAuthorMiddle=ThirdAuthorMiddle,
-		\ThirdAuthorLast=ThirdAuthorLast,
-		\FourthAuthorFirst=FourthAuthorFirst,
-		\FourthAuthorMiddle=FourthAuthorMiddle,
-		\FourthAuthorLast=FourthAuthorLast,
-		\Year=Year,
-		\Month=Month,
-		\Title=Title,
-		\PresentedAt=PresentedAt,
-		\Address=Address,
-		\BIB=BIB%
-	}{%
-		\begin{minipage}{\textwidth}
-			\frenchspacing
-			\hangindent=1em
-			\FirstAuthorLast, \FirstAuthorFirst\DTLifnullorempty{\FirstAuthorMiddle}{}{\mbox{ }\FirstAuthorMiddle}\PresentationAuthorLoop\mbox{ }(\Month, \Year).\mbox{ }\Title.\mbox{ }\PresentedAt, \Address.
-			\DTLiflastrow{}{\vspace{1ex}}
-		\end{minipage}
-		%
-	}%
-}%
+\nocite{*}
+\printbibliography[
+	title={Presentations}
+]
 
 % ------------------------------------------------------------------------------------------------
 % TEACHING
