@@ -114,6 +114,31 @@
 	{%
 		{Liter, Adam},{Liter, A.},{Liter, Adam R.},{Liter, Adam Robert}%
 	}
+	% ------------------------------------------------------------------------------------------------
+	% New driver for @misc
+	% ------------------------------------------------------------------------------------------------
+	\DeclareFieldFormat[misc]{title}{\mkbibquote{#1}}
+	\DeclareFieldFormat[misc]{titlecase}{\MakeSentenceCase*{#1}}
+	\DeclareBibliographyDriver{misc}{%
+		\usebibmacro{bibindex}%
+		\usebibmacro{begentry}%
+		\usebibmacro{author/translator+others}%
+		\setunit{\labelnamepunct}\newblock
+		\usebibmacro{title}%
+		\newunit
+		\printlist{language}%
+		\newunit\newblock
+		\usebibmacro{byauthor}%
+		\newunit\newblock
+		\usebibmacro{byeditor+others}%
+		\newunit\newblock
+		\printfield{eventtitle}%              conference
+		\setunit{\addspace}%
+		\printfield[parens]{eventtitleaddon}% conference acronym, if it exists
+		\setunit{\addcomma\addspace}%
+		\printfield{venue}%                   university and/or location of conference
+		\newunit\newblock
+		\usebibmacro{finentry}}
 % ------------------------------------------------------------------------------------------------
 % CONTENT
 % ------------------------------------------------------------------------------------------------
@@ -349,13 +374,23 @@
 % ------------------------------------------------------------------------------------------------
 %\section*{Publications}
 
+\nocite{*}
+
 % ------------------------------------------------------------------------------------------------
 % PRESENTATIONS
 % ------------------------------------------------------------------------------------------------
+\section*{Presentations}
 
-\nocite{*}
 \printbibliography[
-	title={Presentations}
+	heading=subbibliography,
+	title={Undergraduate conference -- talks},
+	keyword=undergradconftalk
+]
+
+\printbibliography[
+	heading=subbibliography,
+	title={Undergraduate conference -- posters},
+	keyword=undergradconfposter
 ]
 
 % ------------------------------------------------------------------------------------------------
