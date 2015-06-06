@@ -90,6 +90,30 @@
 			\field{title}
 		}
 	}
+	% ------------------------------------------------------------------------------------------------
+	% Always bold my name in the citation; see http://tex.stackexchange.com/a/73246/32888
+	% ------------------------------------------------------------------------------------------------
+	\usepackage{xpatch}
+	
+	\newbibmacro*{name:bold}[2]{%
+		\def\do##1{\ifstrequal{#1, #2}{##1}{\bfseries\listbreak}{}}%
+		\dolistloop{\boldnames}}
+	\newcommand*{\boldnames}{}
+	
+	\xpretobibmacro{name:last}{\begingroup\usebibmacro{name:bold}{#1}{#2}}{}{}
+	\xpretobibmacro{name:first-last}{\begingroup\usebibmacro{name:bold}{#1}{#2}}{}{}
+	\xpretobibmacro{name:last-first}{\begingroup\usebibmacro{name:bold}{#1}{#2}}{}{}
+	\xpretobibmacro{name:delim}{\begingroup\normalfont}{}{}
+	
+	\xapptobibmacro{name:last}{\endgroup}{}{}
+	\xapptobibmacro{name:first-last}{\endgroup}{}{}
+	\xapptobibmacro{name:last-first}{\endgroup}{}{}
+	\xapptobibmacro{name:delim}{\endgroup}{}{}
+	
+	\forcsvlist{\listadd\boldnames}
+	{%
+		{Liter, Adam},{Liter, A.},{Liter, Adam R.},{Liter, Adam Robert}%
+	}
 % ------------------------------------------------------------------------------------------------
 % CONTENT
 % ------------------------------------------------------------------------------------------------
