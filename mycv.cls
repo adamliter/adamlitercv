@@ -30,6 +30,7 @@
 \DeclareStringOption[{Italianno}]{titlefont}
 \DeclareStringOption[{Raleway}]{headerfont}
 \DeclareStringOption[{OpenSansEmoji}]{emojifont}
+\DeclareStringOption[{Raleway Thin}]{biblatexlabelfont}
 
 \ProcessKeyvalOptions*
 
@@ -85,6 +86,8 @@
   {\mycv@headerfont}
 
 \newfontfamily\EmojiFont{\mycv@emojifont}
+
+\newfontfamily\BiblatexLabelFont{\mycv@biblatexlabelfont}
 
 \RequirePackage{fontawesome}
 
@@ -181,11 +184,12 @@
   {biblatex}
 
 % New bibliography environment with years in the margins  
+\DeclareFieldFormat{mycv-label}{\BiblatexLabelFont#1}
 \defbibenvironment{bibliography}
   {\list
      {\iffieldequals{year}{\bibyear}
         {}
-        {\printfield{year}%
+        {\printfield[mycv-label]{year}%
          \savefield{year}{\bibyear}}}
      {\setlength{\leftmargin}{\bibhang}%
       \setlength{\itemindent}{-\leftmargin}%
