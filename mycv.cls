@@ -103,13 +103,13 @@
   \begin{center}
     {\Huge\TitleFont\myauthor}%
     \,%
-    $\begin{cases}%
-      \text{\PrintAddress}\\
-      \text{\PrintPhone}\\
-      \text{\PrintEmail}\\
-      \text{\PrintWebsite}\\
-      \text{\PrintGitHub}\\
-    \end{cases}$%
+    $\left\{\begin{tabular}{@{}c@{\hspace{0.75ex}}l@{}}%
+      \resizebox{0.85em}{!}{\EmojiFont\char"1F40C}\resizebox{0.85em}{!}{\faEnvelopeO} & \myaddress\\
+      \faPhone & \myphone\\
+      \faInbox & \href{mailto:\myemail}{\myemail}\\
+      \faHome & \href{\mywebsiteurl}{\mywebsite}\\
+      \faGithubSquare & \href{https://github.com/\mygithub}{\mygithub}\\
+    \end{tabular}\right.$%
   \end{center}%
   \vspace{-2\baselineskip}%
 }
@@ -310,15 +310,9 @@
 % MACROS
 % ------------------------------------------------------------------------------------------------
 
-\RequirePackage{calc}
 \RequirePackage{xcolor}
 
 \newcommand*{\Colorhref}[2]{\href{#1}{\color{cyan}#2}}
-\newcommand*{\PrintAddress}{\parbox[c]{\widthof{\faInbox}}{\resizebox{\widthof{\faInbox}}{!}{{\EmojiFont\char"1F40C}\faEnvelopeO}}\,\myaddress}
-\newcommand*{\PrintPhone}{\faPhone\,\href{tel:\myphone}{\myphone}}
-\newcommand*{\PrintEmail}{\faInbox\,\href{mailto:\myemail}{\myemail}}
-\newcommand*{\PrintWebsite}{\faHome\,\href{\mywebsiteurl}{\mywebsite}}
-\newcommand*{\PrintGitHub}{\faGithubSquare\,\href{https://github.com/\mygithub}{\mygithub}}
 
 \endinput
 % end mycv.cls
