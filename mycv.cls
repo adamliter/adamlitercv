@@ -58,7 +58,7 @@
       TeX,
       Common
     },
-	BoldFont={* Semibold}
+    BoldFont={* Semibold}
   ]
   {\mycv@mainfont}
   
@@ -98,7 +98,7 @@
 
 \def\@maketitle{%
   \begin{center}
-    {\Huge\TitleFont Adam Liter}%
+    {\Huge\TitleFont\myauthor}%
     \,%
     $\begin{cases}%
       \text{\PrintAddress}\\
@@ -108,7 +108,7 @@
       \text{\PrintGitHub}\\
     \end{cases}$%
   \end{center}%
-  \vspace{-2\baselineskip}
+  \vspace{-2\baselineskip}%
 }
 
 \RequirePackage{enumitem}
