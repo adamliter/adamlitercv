@@ -298,7 +298,8 @@
   unicode,
   pdftitle={\mytitle},
   pdfauthor={\myauthor},
-  pdfkeywords={\mykeywords}
+  pdfkeywords={\mykeywords},
+  pdfborder={0 0 0},
 }
 
 % ------------------------------------------------------------------------------------------------
