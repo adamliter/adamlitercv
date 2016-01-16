@@ -127,6 +127,8 @@
 
 \RequirePackage{parskip}
 
+\setcounter{secnumdepth}{0}
+
 \RequirePackage{titlesec}
 
 \titleformat{\section}

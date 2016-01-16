@@ -136,7 +136,7 @@
 % ------------------------------------------------------------------------------------------------
 % EDUCATION
 % ------------------------------------------------------------------------------------------------
-\section*{Education}
+\section{Education}
 
 \DTLforeach*{education}{%
 	\Degree=Degree,
@@ -195,7 +195,7 @@
 % This section is required for my TA application at Michigan State University
 % For my normal CV, I will just comment this section out
 % ------------------------------------------------------------------------------------------------
-%\section*{Relevant Courses Taken}
+%\section{Relevant Courses Taken}
 %
 %\begin{itemize}[
 %topsep=0pt,
@@ -220,10 +220,10 @@
 % ------------------------------------------------------------------------------------------------
 % AWARDS, HONORS, & FELLOWSHIPS
 % ------------------------------------------------------------------------------------------------
-\section*{Awards, Honors, \& Fellowships}
+\section{Awards, Honors, \& Fellowships}
 
 \foreach \x in \AwardTypes{%
-	\subsection*{\x}
+	\subsection{\x}
 	\DTLforeach*[\DTLiseq{\Type}{\x}]{awards}{%
 		\Type=Type,
 		\Name=Name,
@@ -244,7 +244,7 @@
 % ------------------------------------------------------------------------------------------------
 % PUBLICATIONS
 % ------------------------------------------------------------------------------------------------
-%\section*{Publications}
+%\section{Publications}
 
 \nocite{*}
 
@@ -263,7 +263,7 @@
 % ------------------------------------------------------------------------------------------------
 % PRESENTATIONS
 % ------------------------------------------------------------------------------------------------
-\section*{Presentations}
+\section{Presentations}
 
 \printbibliography[
 	heading=subbibliography,
@@ -322,10 +322,10 @@
 % ------------------------------------------------------------------------------------------------
 % TEACHING
 % ------------------------------------------------------------------------------------------------
-\section*{Teaching Experience}
+\section{Teaching Experience}
 
 \foreach \x in \TeachingTypes{%
-	\subsection*{\x}
+	\subsection{\x}
 	\DTLforeach*[\DTLiseq{\Type}{\x}]{teaching}{%
 		\Type=Type,
 		\Class=Class,
@@ -344,10 +344,10 @@
 % ------------------------------------------------------------------------------------------------
 % MENTORING
 % ------------------------------------------------------------------------------------------------
-\section*{Undergraduate Mentoring}
+\section{Undergraduate Mentoring}
 
 \foreach \x in \YearsOfMentoring{%
-	\subsection*{\x}
+	\subsection{\x}
 	%
 	\begin{itemize}[
 	topsep=0pt,
@@ -381,7 +381,7 @@
 % ------------------------------------------------------------------------------------------------
 % PROFESSIONAL SERVICE
 % ------------------------------------------------------------------------------------------------
-\section*{Professional Service}
+\section{Professional Service}
 
 \DTLforeach*{service}{%
 	\Role=Role,
@@ -402,7 +402,7 @@
 % ------------------------------------------------------------------------------------------------
 % PROFESSIONAL AFFILIATIONS
 % ------------------------------------------------------------------------------------------------
-\section*{Professional Affiliations}
+\section{Professional Affiliations}
 
 \DTLforeach*{affiliations}{%
 	\Title=Title,
@@ -421,10 +421,10 @@
 % ------------------------------------------------------------------------------------------------
 % SKILLS
 % ------------------------------------------------------------------------------------------------
-\section*{Skills}
+\section{Skills}
 
 \foreach \x in \SkillTypes{%
-	\subsection*{\x}
+	\subsection{\x}
 	%
 	\begin{description}
 	%
