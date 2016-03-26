@@ -179,6 +179,7 @@
   [
     backend=biber,
     bibstyle=biblatex-sp-unified,% see https://github.com/semprag/biblatex-sp-unified
+    issueandeditor=true,
     maxbibnames=99,
     defernumbers=true,% for the new bibenvironment
     sorting=ydmdDdt
@@ -189,11 +190,17 @@
 \DeclareFieldFormat{mycv-label}{\BiblatexLabelFont#1}
 \defbibenvironment{bibliography}
   {\list
-     {\iffieldequals{year}{\bibyear}
-        {}
-        {\printfield[mycv-label]{year}%
-         \savefield{year}{\bibyear}}}
-     {\setlength{\leftmargin}{\bibhang}%
+     {\iffieldundef{pubstate}
+        {\iffieldequals{year}{\bibyear}
+           {}
+           {\printfield[mycv-label]{year}%
+            \savefield{year}{\bibyear}}}
+        {\iffieldequals{pubstate}{\bibpubstate}
+           {}
+           {\printfield[mycv-label]{pubstate}%
+            \savefield{pubstate}{\bibpubstate}}}}
+     {\settowidth\labelwidth{forthcoming}%
+      \setlength{\leftmargin}{\bibhang}%
       \setlength{\itemindent}{-\leftmargin}%
       \setlength{\itemsep}{\bibitemsep}%
       \setlength{\parsep}{\bibparsep}}}
@@ -202,9 +209,10 @@
 % Increase spacing between items a bit
 \setlength{\bibparsep}{0.5ex}
 
-% Don't print the year in the actual citation, just as the label
+% Don't print the year/pubstate in the actual citation, just as the label
 % (see the new bibenvironment immediately above)
-\renewbibmacro*{date+extrayear}{}  
+\renewbibmacro*{date+extrayear}{}
+\renewbibmacro*{addendum+pubstate}{} 
   
   % ------------------------------------------------------------------------------------------------
   % New sorting scheme for CV
