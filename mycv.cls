@@ -199,7 +199,7 @@
            {}
            {\printfield[mycv-label]{pubstate}%
             \savefield{pubstate}{\bibpubstate}}}}
-     {\settowidth\labelwidth{forthcoming}%
+     {\settowidth\labelwidth{forthcomingxxx}%
       \setlength{\leftmargin}{\bibhang}%
       \setlength{\itemindent}{-\leftmargin}%
       \setlength{\itemsep}{\bibitemsep}%
