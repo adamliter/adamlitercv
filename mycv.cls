@@ -257,26 +257,16 @@
   % ------------------------------------------------------------------------------------------------
   \RequirePackage{xpatch}
 
-  \newbibmacro*{name:bold}[2]{%
-    \def\do##1{\ifstrequal{#1, #2}{##1}{\bfseries\listbreak}{}}%
-    \dolistloop{\boldnames}}
-
-  \newcommand*{\boldnames}{}
-
-  \xpretobibmacro{name:last}{\begingroup\usebibmacro{name:bold}{#1}{#2}}{}{}
-  \xpretobibmacro{name:first-last}{\begingroup\usebibmacro{name:bold}{#1}{#2}}{}{}
-  \xpretobibmacro{name:last-first}{\begingroup\usebibmacro{name:bold}{#1}{#2}}{}{}
+  \xpretobibmacro{name:family}{\begingroup\iffieldequalstr{hash}{0d367c6df2345224416120c3f5e5b5a4}{\bfseries}{}}{}{}
+  \xpretobibmacro{name:given-family}{\begingroup\iffieldequalstr{hash}{0d367c6df2345224416120c3f5e5b5a4}{\bfseries}{}}{}{}
+  \xpretobibmacro{name:family-given}{\begingroup\iffieldequalstr{hash}{0d367c6df2345224416120c3f5e5b5a4}{\bfseries}{}}{}{}
   \xpretobibmacro{name:delim}{\begingroup\normalfont}{}{}
 
-  \xapptobibmacro{name:last}{\endgroup}{}{}
-  \xapptobibmacro{name:first-last}{\endgroup}{}{}
-  \xapptobibmacro{name:last-first}{\endgroup}{}{}
+  \xapptobibmacro{name:family}{\endgroup}{}{}
+  \xapptobibmacro{name:given-family}{\endgroup}{}{}
+  \xapptobibmacro{name:family-given}{\endgroup}{}{}
   \xapptobibmacro{name:delim}{\endgroup}{}{}
-	
-  \forcsvlist{\listadd\boldnames}
-    {%
-      {Liter, Adam},{Liter, A.},{Liter, Adam R.},{Liter, Adam Robert}%
-    }
+
   % ------------------------------------------------------------------------------------------------
   % New driver for @misc
   % ------------------------------------------------------------------------------------------------
