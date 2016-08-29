@@ -59,7 +59,7 @@
       TeX,
       Common
     },
-    BoldFont={* Semibold}
+    BoldFont={AGaramond Pro Semibold}
   ]
   {\mycv@mainfont}
   
