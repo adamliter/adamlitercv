@@ -16,11 +16,11 @@
 % Metadata options
 \DeclareStringOption[{Adam Liter}]{name}
 \DeclareStringOption[{adamlitercv}]{title}
-\DeclareStringOption[{adam.liter@gmail.com}]{email}
+\DeclareStringOption[{io@adamliter.org}]{email}
 \DeclareStringOption[{+1-952-807-5616}]{phone}
-\DeclareStringOption[{msu.edu/\textasciitilde literada}]{website}
-\DeclareStringOption[{https://msu.edu/~literada}]{websiteurl}
-\DeclareStringOption[{222 Horton St, Lansing, MI 48912}]{address}
+\DeclareStringOption[{adamliter.org}]{website}
+\DeclareStringOption[{http://adamliter.org}]{websiteurl}
+\DeclareStringOption[{816 Easley St \#829, Silver Spring, MD 20910}]{address}
 \DeclareStringOption[{adamliter}]{github}
 \DeclareStringOption[{Adam Liter, cv, adamlitercv, vita, curriculum vitae, linguistics}]{keywords}
 
