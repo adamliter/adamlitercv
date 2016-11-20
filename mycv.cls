@@ -186,19 +186,25 @@
   ]
   {biblatex}
 
-% New bibliography environment with years in the margins  
+% New bibliography environment with years in the margins
+\newcommand*{\InPress}{in press}
+
 \DeclareFieldFormat{mycv-label}{\BiblatexLabelFont#1}
 \defbibenvironment{bibliography}
   {\list
-     {\iffieldundef{pubstate}
-        {\iffieldequals{year}{\bibyear}
-           {}
-           {\printfield[mycv-label]{year}%
-            \savefield{year}{\bibyear}}}
+     % only use "in press" as a label
+     % NB: \iffieldequals only takes macros as arguments
+     {\iffieldequals{pubstate}{\InPress}
         {\iffieldequals{pubstate}{\bibpubstate}
            {}
            {\printfield[mycv-label]{pubstate}%
-            \savefield{pubstate}{\bibpubstate}}}}
+            \savefield{pubstate}{\bibpubstate}}}
+        % Otherwise print year (unless it matches
+        % the previous item's year)
+        {\iffieldequals{year}{\bibyear}
+           {}
+           {\printfield[mycv-label]{year}%
+            \savefield{year}{\bibyear}}}}
      {\settowidth\labelwidth{forthcomingxxx}%
       \setlength{\leftmargin}{\bibhang}%
       \setlength{\itemindent}{-\leftmargin}%
@@ -209,10 +215,14 @@
 % Increase spacing between items a bit
 \setlength{\bibparsep}{0.5ex}
 
-% Don't print the year/pubstate in the actual citation, just as the label
+% Don't print the year in the actual citation, just as the label
 % (see the new bibenvironment immediately above)
 \renewbibmacro*{date+extrayear}{}
-\renewbibmacro*{addendum+pubstate}{} 
+% Only print the pubstate if it doesn't equal "in press"
+\renewbibmacro*{addendum+pubstate}{
+  \iffieldequals{pubstate}{\InPress}
+  {}
+  {\printfield{pubstate}}}
   
   % ------------------------------------------------------------------------------------------------
   % New sorting scheme for CV
