@@ -20,7 +20,7 @@
 \DeclareStringOption[{+1-952-807-5616}]{phone}
 \DeclareStringOption[{adamliter.org}]{website}
 \DeclareStringOption[{http://adamliter.org}]{websiteurl}
-\DeclareStringOption[{816 Easley St \#829, Silver Spring, MD 20910}]{address}
+\DeclareStringOption[{118 Monroe St \#804, Rockville, MD 20850}]{address}
 \DeclareStringOption[{adamliter}]{github}
 \DeclareStringOption[{Adam Liter, cv, adamlitercv, vita, curriculum vitae, linguistics}]{keywords}
 
