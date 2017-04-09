@@ -108,7 +108,7 @@
       \faPhone & \myphone\\
       \faInbox & \href{mailto:\myemail}{\myemail}\\
       \faHome & \href{\mywebsiteurl}{\mywebsite}\\
-      \faGithubSquare & \href{https://github.com/\mygithub}{\mygithub}\\
+      \faGithub & \href{https://github.com/\mygithub}{\mygithub}\\
     \end{tabular}\right.$%
   \end{center}%
   \vspace{-2\baselineskip}%
