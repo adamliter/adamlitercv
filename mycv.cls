@@ -109,7 +109,7 @@
     \,%
     $\left\{\begin{tabular}{@{}c@{\hspace{0.75ex}}l@{}}%
       \resizebox{0.85em}{!}{\EmojiFont\char"1F40C}\resizebox{0.85em}{!}{\faEnvelopeO} & \begin{varwidth}{0.4\textwidth}\myaddress\end{varwidth}\\[2em]
-      \faPhone & \myphone\\[0.2em]
+      %\faPhone & \myphone\\[0.2em]
       \faInbox & \href{mailto:\myemail}{\myemail}\\[0.2em]
       \faHome & \href{\mywebsiteurl}{\mywebsite}\\[0.2em]
       \faGithub & \href{https://github.com/\mygithub}{\mygithub}\\[0.2em]
