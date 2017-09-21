@@ -20,7 +20,7 @@
 \DeclareStringOption[{+1-952-807-5616}]{phone}
 \DeclareStringOption[{adamliter.org}]{website}
 \DeclareStringOption[{http://adamliter.org}]{websiteurl}
-\DeclareStringOption[{118 Monroe St \#804, Rockville, MD 20850}]{address}
+\DeclareStringOption[{Department of Linguistics\\1401 Marie Mount Hall\\7814 Regents Dr\\College Park, MD 20742-7505}]{address}
 \DeclareStringOption[{adamliter}]{github}
 \DeclareStringOption[{Adam Liter, cv, adamlitercv, vita, curriculum vitae, linguistics}]{keywords}
 
@@ -101,17 +101,18 @@
 % ------------------------------------------------------------------------------------------------
 
 \RequirePackage{amsmath}
+\RequirePackage{varwidth}
 
 \def\@maketitle{%
   \begin{center}
     {\Huge\TitleFont\myauthor}%
     \,%
     $\left\{\begin{tabular}{@{}c@{\hspace{0.75ex}}l@{}}%
-      \resizebox{0.85em}{!}{\EmojiFont\char"1F40C}\resizebox{0.85em}{!}{\faEnvelopeO} & \myaddress\\
-      \faPhone & \myphone\\
-      \faInbox & \href{mailto:\myemail}{\myemail}\\
-      \faHome & \href{\mywebsiteurl}{\mywebsite}\\
-      \faGithub & \href{https://github.com/\mygithub}{\mygithub}\\
+      \resizebox{0.85em}{!}{\EmojiFont\char"1F40C}\resizebox{0.85em}{!}{\faEnvelopeO} & \begin{varwidth}{0.4\textwidth}\myaddress\end{varwidth}\\[2em]
+      \faPhone & \myphone\\[0.2em]
+      \faInbox & \href{mailto:\myemail}{\myemail}\\[0.2em]
+      \faHome & \href{\mywebsiteurl}{\mywebsite}\\[0.2em]
+      \faGithub & \href{https://github.com/\mygithub}{\mygithub}\\[0.2em]
     \end{tabular}\right.$%
   \end{center}%
   \vspace{-2\baselineskip}%
