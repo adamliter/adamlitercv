@@ -254,7 +254,13 @@
   \iffieldequals{pubstate}{\InPress}
   {}
   {\printfield{pubstate}}}
-  
+
+ \DeclareFieldFormat{doi}{%
+   \textsc{doi}:
+   \ifhyperref
+     {\Colorhref{https://doi.org/#1}{\nolinkurl{#1}}}
+     {\nolinkurl{#1}}}
+
   % ------------------------------------------------------------------------------------------------
   % New sorting scheme for CV
   % ------------------------------------------------------------------------------------------------
