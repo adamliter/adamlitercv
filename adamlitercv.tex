@@ -186,6 +186,17 @@
 		\end{description}
 		%
 	}%
+	\DTLifnullorempty{\GPA}{}{%
+	    \begin{description}[
+		    labelindent=15pt,
+     		topsep=0pt,
+	        partopsep=0pt,
+     		parsep=0pt,
+        	itemsep=0pt		
+		    ]
+			    \item[Cumulative GPA:]{\GPA}%
+			\end{description}
+	}%
 	\DTLifnullorempty{\ExtraOne}{%
 		% Do nothing if \ExtraOne is empty
 	}{% If \ExtraOne is not empty
@@ -200,7 +211,6 @@
 		\end{itemize}
 		%		
 	}%
-	\DTLifnullorempty{\GPA}{}{Cumulative GPA: \GPA}
 	\DTLiflastrow{}{\vspace{1ex}}
 	\end{minipage}
 	%
