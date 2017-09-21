@@ -25,7 +25,7 @@
 \DeclareStringOption[{Adam Liter, cv, adamlitercv, vita, curriculum vitae, linguistics}]{keywords}
 
 % Font options
-\DeclareStringOption[{Adobe Garamond Pro}]{mainfont}
+\DeclareStringOption[{AGaramondPro}]{mainfont}
 \DeclareStringOption[{Inconsolata}]{monofont}
 \DeclareStringOption[{Italianno}]{titlefont}
 \DeclareStringOption[{Raleway}]{headerfont}
@@ -59,7 +59,10 @@
       TeX,
       Common
     },
-    BoldFont={AGaramond Pro Semibold}
+    UprightFont = *-Regular,
+    BoldFont = *-Semibold,
+    ItalicFont = *-Italic,
+    BoldItalicFont = *-SemiboldItalic
   ]
   {\mycv@mainfont}
   
