@@ -32,6 +32,12 @@
 \DeclareStringOption[{OpenSansEmoji}]{emojifont}
 \DeclareStringOption[{Raleway Thin}]{biblatexlabelfont}
 
+% Education display options
+\DeclareBoolOption[false]{highschool}
+\DeclareBoolOption[true]{undergrad}
+\DeclareBoolOption[true]{lsa}
+\DeclareBoolOption[true]{graduate}
+
 \ProcessKeyvalOptions*
 
 % ------------------------------------------------------------------------------------------------
@@ -47,6 +53,25 @@
 \newcommand*{\myaddress}{\mycv@address}
 \newcommand*{\mygithub}{\mycv@github}
 \newcommand*{\mykeywords}{\mycv@keywords}
+
+\newcommand*{\edudisplay}{
+  \ifmycv@graduate%
+  graduate,%
+  \else%
+  \fi%
+  \ifmycv@lsa%
+  lsa,%
+  \else%
+  \fi%
+  \ifmycv@undergrad%
+  undergrad,%
+  \else%
+  \fi%
+  \ifmycv@highschool%
+  highschool%
+  \else%
+  \fi%
+}
 
 % ------------------------------------------------------------------------------------------------
 % FONTS

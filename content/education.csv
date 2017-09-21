@@ -1,7 +1,8 @@
-Degree,Institution,Location,Thesis,Committee,GPA,StartDate,EndDate,Extra1,Extra2
-"M.A., Linguistics",Michigan State University,"East Lansing, MI",The Acquisition and Syntax of the Passive in English,"Alan Munn (Chair), Cristina Schmitt, Marcin Morzycki",4.0,01/2013,05/2016,,
-2015 Linguistic Institute,University of Chicago,"Chicago, IL",,,,,07/2015,,
-"B.A., Linguistics (High Honors) \& B.A., Philosophy (High Honors)",Michigan State University,"East Lansing, MI",Passives in English: A Theoretical and Experimental Investigation Thereof,Cristina Schmitt,3.98,08/2010,05/2014,Cognitive Science Specialization,Women's and Gender Studies Minor
-2013 Linguistic Institute,University of Michigan,"Ann Arbor, MI",,,,06/2013,07/2013,,
-Non-Degree Seeking Student,University of Minnesota – Twin Cities,"Minneapolis, MN",,,3.911,09/2007,05/2010,Post-Secondary Enrollment Options ('09 – '10),University of Minnesota Talented Youth Mathematics Program ('07 – '09)
-High School Diploma,Eden Prairie High School,"Eden Prairie, MN",,,3.99,09/2006,06/2010,,
+Level,Degree,Institution,Location,Thesis,Committee,GPA,StartDate,EndDate,Extra1,Extra2
+graduate,"Ph.D., Linguistics",University of Maryland, "College Park, MD",,,,08/2017,(expected) 05/2022,
+graduate,"M.A., Linguistics",Michigan State University,"East Lansing, MI",The Acquisition and Syntax of the Passive in English,"Alan Munn (Chair), Cristina Schmitt, Marcin Morzycki",4.0,01/2013,05/2016,,
+lsa,2015 Linguistic Institute,University of Chicago,"Chicago, IL",,,,,07/2015,,
+undergrad,"B.A., Linguistics (High Honors) \& B.A., Philosophy (High Honors)",Michigan State University,"East Lansing, MI",Passives in English: A Theoretical and Experimental Investigation Thereof,Cristina Schmitt,3.98,08/2010,05/2014,Cognitive Science Specialization,Women's and Gender Studies Minor
+lsa,2013 Linguistic Institute,University of Michigan,"Ann Arbor, MI",,,,06/2013,07/2013,,
+highschool,Non-Degree Seeking Student,University of Minnesota – Twin Cities,"Minneapolis, MN",,,3.911,09/2007,05/2010,Post-Secondary Enrollment Options ('09 – '10),University of Minnesota Talented Youth Mathematics Program ('07 – '09)
+highschool,High School Diploma,Eden Prairie High School,"Eden Prairie, MN",,,3.99,09/2006,06/2010,,

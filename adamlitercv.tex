@@ -154,7 +154,8 @@
 % ------------------------------------------------------------------------------------------------
 \section{Education}
 
-\DTLforeach*{education}{%
+\DTLforeach*[\DTLisSubString{\edudisplay}{\Level}]{education}{%
+    \Level=Level,
 	\Degree=Degree,
 	\Institution=Institution,
 	\Location=Location,
