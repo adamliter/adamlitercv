@@ -248,7 +248,7 @@
 
 % Don't print the year in the actual citation, just as the label
 % (see the new bibenvironment immediately above)
-\renewbibmacro*{date+extrayear}{}
+\renewbibmacro*{date+extradate}{}
 % Only print the pubstate if it doesn't equal "in press"
 \renewbibmacro*{addendum+pubstate}{
   \iffieldequals{pubstate}{\InPress}
