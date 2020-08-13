@@ -47,6 +47,7 @@
 *.thm
 
 ### AUCTeX
+.auctex-auto/
 auto/
 
 ### beamer
