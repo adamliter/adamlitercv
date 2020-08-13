@@ -97,13 +97,21 @@
 		}%
 	}%
 	% ------------------------------------------------------------------------------------------------
-	% PROFESSIONAL SERVICE
+	% ACADEMIC ACTIVITIES
 	% ------------------------------------------------------------------------------------------------
-	\DTLloaddb{service}{content/service.csv}
-	% ------------------------------------------------------------------------------------------------
-	% PROFESSIONAL AFFILIATIONS
-	% ------------------------------------------------------------------------------------------------		
-	\DTLloaddb{affiliations}{content/affiliations.csv}
+	\DTLloaddb{academicactivities}{content/academicactivities.csv}
+	\newcommand*{\ActivityTypes}{}
+	\DTLforeach*{academicactivities}{\ActivityType=ActivityType}{%
+	    \expandafter\DTLifinlist\expandafter{\ActivityType}{\ActivityTypes}%
+	    {}% do nothing if already in list
+        {% else add to list
+		    \ifdefempty{\ActivityTypes}%
+		    {\let\ActivityTypes\ActivityType}% first element in list
+			{% else append to list
+                \eappto\ActivityTypes{,\ActivityType}
+			}
+		}%
+	}%
 	% ------------------------------------------------------------------------------------------------
 	% SKILLS
 	% ------------------------------------------------------------------------------------------------	
@@ -435,43 +443,32 @@
 }%
 
 % ------------------------------------------------------------------------------------------------
-% PROFESSIONAL SERVICE
+% ACADEMIC ACTIVITIES
 % ------------------------------------------------------------------------------------------------
-\section{Professional Service}
+\section{Academic Activities}
 
-\DTLforeach*{service}{%
-	\Role=Role,
-	\Organization=Organization,
-	\URL=URL,
-	\Location=Location,
-	\StartDate=StartDate,
-	\EndDate=EndDate%
-}{%
-	\begin{minipage}{\textwidth}
-		\textbf{\Role} \hfill \DTLifnullorempty{\StartDate}{\EndDate}{\StartDate\ – \EndDate}\par
-		\DTLifnullorempty{\URL}{\textit{\Organization}}{\textit{\Colorhref{\URL}{\Organization}}}, \textit{\Location}
-		\DTLiflastrow{}{\vspace{1ex}}
-	\end{minipage}
-	%
-}%
-
-% ------------------------------------------------------------------------------------------------
-% PROFESSIONAL AFFILIATIONS
-% ------------------------------------------------------------------------------------------------
-\section{Professional Affiliations}
-
-\DTLforeach*{affiliations}{%
-	\Title=Title,
-	\Organization=Organization,
-	\StartDate=StartDate,
-	\EndDate=EndDate%
-}{%
-	\begin{minipage}{\textwidth}
-		\textbf{\Title} \hfill \DTLifnullorempty{\StartDate}{\EndDate}{\StartDate\ – \EndDate}\par
-		\textit{\Organization}
-		\DTLiflastrow{}{\vspace{1ex}}
-	\end{minipage}
-	%
+\foreach \x in \ActivityTypes{%
+    \subsection{\x}
+    %
+    \DTLforeach*[\DTLiseq{\ActivityType}{\x}]{academicactivities}{%
+        \ActivityType=ActivityType,
+	    \Role=Role,
+	    \Organization=Organization,
+	    \URL=URL,
+	    \Location=Location,
+	    \StartDate=StartDate,
+	    \EndDate=EndDate,
+		\YearByFreq=YearByFreq%
+    }{%
+	    \begin{minipage}{\textwidth}
+		    \DTLifnullorempty{\Role}{\DTLifnullorempty{\URL}{\textit{\Organization}}{\textit{\Colorhref{\URL}{\Organization}}}}{\textbf{\Role}}%
+		    \hfill%
+			\DTLifnullorempty{\YearByFreq}{\DTLifnullorempty{\StartDate}{\EndDate}{\StartDate\ – \EndDate}}{\YearByFreq}\par%
+            \DTLifnullorempty{\Role}{}{\DTLifnullorempty{\URL}{\textit{\Organization}}{\textit{\Colorhref{\URL}{\Organization}}}\DTLifnullorempty{\Location}{}{, \textit{\Location}}}
+		    \DTLiflastrow{}{\vspace{1ex}}
+	    \end{minipage}
+	    %
+    }%
 }%
 
 % ------------------------------------------------------------------------------------------------
@@ -496,3 +493,10 @@
 }%
 
 \end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: luatex
+%%% TeX-master: t
+%%% LaTeX-biblatex-use-Biber: t
+%%% End:
