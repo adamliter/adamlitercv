@@ -276,7 +276,7 @@
   %
   % See also http://tex.stackexchange.com/a/46879/32888
   %
-  \DeclareSortingScheme{ydmdDdt}{
+  \DeclareSortingTemplate{ydmdDdt}{
     %\sort{
     %  \field{presort}
     %}
