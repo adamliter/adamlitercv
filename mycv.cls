@@ -2,7 +2,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{mycv}[2015/12/29 A personal class for my cv. Requires biblatex and biber.]
 
-\LoadClass{article}
+\LoadClassWithOptions{article}
 
 \RequirePackage{iftex}
 \RequireLuaTeX
