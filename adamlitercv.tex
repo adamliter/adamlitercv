@@ -34,6 +34,16 @@
 \usepackage{datatool}
 \usepackage{etoolbox}
 \usepackage{pgffor}
+
+\makeatletter
+\newcommand\makeitemize[1]{%
+  \begin{itemize}
+    \forcsvlist{\makeitemize@item}{#1}
+  \end{itemize}
+}
+\newcommand\makeitemize@item[1]{\item #1}
+\makeatother
+
 	% ------------------------------------------------------------------------------------------------
 	% POSITIONS
 	% ------------------------------------------------------------------------------------------------
@@ -384,11 +394,15 @@
 		\Type=Type,
 		\Class=Class,
 		\University=University,
+		\Responsibilities=Responsibilities,
 		\Date=Date%
 	}{%
 		\begin{minipage}{\textwidth}
 			\textbf{\Class} \hfill \Date\par
 			\textit{\University}
+			\DTLifnullorempty{\Responsibilities}{}{%
+			  \DTLpar%
+			  \expandafter\makeitemize\expandafter{\Responsibilities}}
 			\DTLiflastrow{}{\vspace{1ex}}
 		\end{minipage}
 		%
