@@ -1,9 +1,11 @@
 FieldOfCourse,CourseNumber,CourseName,SemesterTaken,TakenAt
+ling,889A,Professional Methods,Fall 2020,University of Maryland
 ling,773,Computational Linguistics II,Spring 2020,University of Maryland
 cmsc,422,Introduction to Machine Learning,Fall 2019,University of Maryland
 ling,723,Computational Linguistics I,Fall 2019,University of Maryland
 ling,879C,Seminar in Semantics,Spring 2019,University of Maryland
 ling,849C,Seminar in Psycholinguistics; Computational Psycholinguistics,Spring 2019,University of Maryland
+ling,698T,Pedagogy for Linguistics,Fall 2018,University of Maryland
 ling,859A,Seminar in Language Acquisition,Fall 2018,University of Maryland
 psyc,601,Quantitative Methods I,Fall 2018,University of Maryland
 ling,661,Issues in Semantics,Spring 2018,University of Maryland
