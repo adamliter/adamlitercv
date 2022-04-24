@@ -213,13 +213,19 @@
 	\Position=Position,
 	\StartDate=StartDate,
 	\EndDate=EndDate,
-	\Department=Department,
+	\DepartmentOrCompany=DepartmentOrCompany,
 	\University=University,
 	\Location=Location%
 }{%
 	\begin{minipage}{\textwidth}
 	\textbf{\Position} \hfill \DTLifnullorempty{\EndDate}{\StartDate\ – present}{\StartDate\ – \EndDate}\par
-	\textit{\Department}, \textit{\University}, \textit{\Location}
+	\textit{\DepartmentOrCompany}%
+	\DTLifnullorempty{\University}%
+	  {}%
+	  {, \textit{\University}}%
+	\DTLifnullorempty{\Location}%
+	  {}%
+	  {, \textit{\Location}}%
 	\DTLiflastrow{}{\vspace{1ex}}
 	\end{minipage}
 }%
